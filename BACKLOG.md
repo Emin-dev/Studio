@@ -30,6 +30,23 @@ monetization model per RULES.md's hard constraint (rent/buy/sell only).
       of SMS OTP. **Monetization: BUY** — prepaid verification-credit packs
       (e.g. 1,000 verifications for a flat price) rather than recurring
       billing, to keep the MVP's payment plumbing simple.
+      **IMPORTANT SCOPE NOTE for whoever builds this next:** do NOT expose
+      real WhatsApp Cloud API access tokens client-side (in browser JS) —
+      that's a real security anti-pattern (anyone viewing page source could
+      steal a customer's token and send messages on their account/bill).
+      Do NOT reuse qeydiyyat's actual production WhatsApp credentials either
+      - those are live business secrets, not something to bundle into a
+      public product. Honest v1 scope: (1) a docs/landing page explaining
+      the pattern, (2) an interactive UX simulator with a clearly-labeled
+      MOCK WhatsApp step so a prospective customer can evaluate the flow,
+      (3) the actual verification-TOKEN generation/expiry/one-time-use
+      logic - build and test this part for real, it needs no external
+      credentials, (4) a documented server-side integration snippet showing
+      how a real customer would wire their OWN Meta app credentials into a
+      backend they control. Do not ship a version that pretends real
+      WhatsApp messages are being sent when they aren't - that's exactly
+      the kind of shortcut RULES.md's "never skip verification" line rules
+      out.
 - [ ] **A premium puzzle/idle game** (game) — small, polished, genuinely fun
       standalone game (not a CozyNook variant — a different mechanic/theme
       for portfolio diversity), free to try with a soft content cap.
