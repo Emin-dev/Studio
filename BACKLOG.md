@@ -12,7 +12,7 @@ monetization model per RULES.md's hard constraint (rent/buy/sell only).
 
 ## Batch 1 (category-diverse: B2B service, dev-tool, game, creator-tool, social)
 
-- [ ] **Cohort Autopsy** (B2B service) — automated security-vulnerability
+- [x] **Cohort Autopsy** (B2B service) — automated security-vulnerability
       scan across a bootcamp cohort's repos, run against the real recurring
       vuln classes found auditing the codeacademyprogramming org (leaked
       secrets, unauthenticated admin panels, self-assign-admin bugs,
@@ -20,6 +20,9 @@ monetization model per RULES.md's hard constraint (rent/buy/sell only).
       **Monetization: SELL** — one-time fee per cohort report ($200-500,
       priced in AZN once real). Highest market-evidence idea from the
       research (score 52); pilot target is Emin's own bootcamp org first.
+      **SHIPPED** — https://github.com/Emin-dev/cohort-autopsy — verified
+      against real ground truth (4/4 known-vulnerable repos correctly
+      flagged, 3/3 known-clean repos correctly clean). Sandbox payment only.
 - [ ] **AçıqQapı** (dev-tool / API) — hosted "verify a phone number by
       WhatsApp link tap" endpoint, packaging the OTP-by-link pattern proven
       in qeydiyyat (avoids Meta Business Verification entirely). Other
