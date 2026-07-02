@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <title>Studio — by Emin</title>
+    <meta name="description" content="A growing catalog of small, honest products. No ads, ever — rent, buy, or sell only.">
+    <meta name="theme-color" content="#f5efe6">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <header class="hub-header">
+            <h1>Studio</h1>
+            <p class="tagline">A growing catalog of small, honest products.<br>No ads, ever — rent, buy, or sell only.</p>
+        </header>
+
+        <main id="catalog" class="catalog" aria-label="Product catalog"></main>
+
+        <template id="product-card-template">
+            <a class="product-card" href="#" target="_blank" rel="noopener">
+                <span class="product-emoji" aria-hidden="true"></span>
+                <div class="product-body">
+                    <div class="product-title-row">
+                        <h2 class="product-name"></h2>
+                        <span class="product-category"></span>
+                    </div>
+                    <p class="product-pitch"></p>
+                    <div class="product-meta">
+                        <span class="product-price"></span>
+                        <span class="product-status"></span>
+                    </div>
+                </div>
+            </a>
+        </template>
+
+        <div id="empty-state" class="empty-state" hidden>
+            <p>Nothing shipped yet — the first batch is building now.</p>
+        </div>
+
+        <footer class="hub-footer">
+            <span>Made by Emin</span>
+            <a href="https://github.com/Emin-dev/Studio" target="_blank" rel="noopener">Source</a>
+        </footer>
+    </div>
+</body>
+</html>
