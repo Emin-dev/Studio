@@ -108,7 +108,7 @@ below names its real infrastructure cost honestly instead.)
       hide it): embedding/similarity quality for a low-resource language
       needs real validation before shipping — test the actual precomputed
       rankings make sense to a native speaker before calling this done.
-- [ ] **Scriver-i-şkola** (game) — a premium, one-time-purchase word-
+- [x] **Scriver-i-şkola** (game) — a premium, one-time-purchase word-
       crafting puzzle with a light roguelike deckbuilding loop, themed
       around reopening a village school (matches the Studio cozy house
       style — no combat, no violence framing). **Monetization: BUY** —
@@ -116,6 +116,23 @@ below names its real infrastructure cost honestly instead.)
       deterministic seeded runs, localStorage progression — no backend
       needed for v1. Honest self-rating: a modest side-bet ($0-20K), not a
       business plan — build for the craft/portfolio value.
+      **SHIPPED** — https://github.com/Emin-dev/scriver-i-skola — real
+      Scrabble point values, a real 49,643-word dictionary derived from
+      the system dictionary, seeded deterministic runs (unit-tested).
+      **Real bug found DURING interactive testing, not before:** the raw
+      dictionary only had headwords — common regular plurals a player
+      would reasonably expect ("warns") were rejected even though the base
+      word ("warn") was valid. Fixed by safely expanding the dictionary
+      with derived regular plurals (+s/+es/y-to-ies only — deliberately
+      not verb tenses, which need irregular-form/consonant-doubling
+      handling that can't be derived safely by blind suffix rules).
+      Dictionary grew 49,643 → 75,651 words. Verified extensively in a
+      real browser afterward: played 5 different real words across
+      several rounds, confirmed scoring math by hand every time, confirmed
+      both the pass path (upgrade screen, real deterministic choices) and
+      the non-punishing fail path (run ends, best score persists), and ran
+      a real sandbox payment to completion. [hidden]/display CSS lesson
+      applied proactively again — held correctly throughout.
 - [ ] **Repetitor** (B2B service / edtech, Azerbaijani-language-first) — a
       WhatsApp-based grading assistant for Azerbaijani private tutors:
       forward a photo of homework, get a structured grade breakdown +

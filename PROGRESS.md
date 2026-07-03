@@ -6,6 +6,72 @@ see the ledger at the bottom for shipped/monetization-ready/live counts
 
 ---
 
+## 2026-07-03 — Batch 2, item 2: Scriver-i-şkola shipped
+
+**Shipped** — https://github.com/Emin-dev/scriver-i-skola, live at
+https://emin-dev.github.io/scriver-i-skola/. A word-crafting puzzle with a
+light roguelike deckbuilding loop (draw a hand of letter tiles, craft the
+best real word to hit a room's score target, choose an upgrade between
+rooms — add/remove a tile or gain a scoring charm). Real Scrabble letter
+point values, seeded/deterministic runs (never `Math.random()` for
+gameplay — a mulberry32 PRNG, unit-tested for reproducibility). Free
+rooms 1-2, $4.99 one-time unlocks the full 5-room run.
+
+**Real dictionary, not a placeholder:** generated from this machine's
+system dictionary (`/usr/share/dict/words`, Webster's Second
+International), filtered to 3-7 letter lowercase words — 49,643 real
+words to start.
+
+**A genuine, non-trivial bug was found DURING interactive browser
+testing, not by the Node tests** (which all passed on real logic but
+couldn't have caught this without playing the actual dictionary content):
+the raw system dictionary only contains headwords, so common regular
+plurals a player would obviously expect were missing — "warns" was
+rejected as "not a real word" even though "warn" validated fine. Root
+cause: Webster's Second (1934) mostly lists base forms, not every
+inflection. Fix: safely expanded the dictionary by deriving regular
+plurals (+s / +es for words ending s/x/z/ch/sh / y→ies for consonant+y)
+from the existing real headwords — 49,643 → 75,651 words. Deliberately
+did **not** attempt to generate verb tenses (-ed/-ing): irregular verbs
+and consonant-doubling rules can produce genuinely wrong words if derived
+blindly (e.g. "run"+"ed" would wrongly yield "runed" instead of "ran"),
+so that was correctly left alone rather than risk shipping fabricated
+non-words. This is exactly the kind of gap a real interactive playthrough
+catches that unit tests on the *scoring/run logic* alone cannot — the
+tests were testing the machinery, not the actual word-list content.
+
+**Verified at both layers:**
+- 7 Node test files (rng, deck, scoring, charms, run, save, checkout,
+  dictionary) — all passing, including a dictionary content-integrity
+  test that samples 5,000+ entries against the documented filter.
+- A real, extensive interactive browser pass: played 5 different real
+  words across multiple rounds and restarts (WORN, TICKLE, GORE, HELMS,
+  SAUNA), hand-verified the scoring math matched every single time,
+  confirmed the pass path (deterministic upgrade-choice screen) and the
+  non-punishing fail path (run ends cleanly, best score persists across
+  reloads) both work, confirmed a charm (Rare Find) correctly contributes
+  zero bonus on a word with no qualifying letters (consistent, not just
+  "does nothing"), and ran a real sandbox payment through to completion
+  (unlocks correctly, transitions to the next screen). Zero console
+  errors across the entire session.
+- Proactively applied the Quiet Tiles `[hidden]`/`display` CSS lesson
+  again from the start — held correctly through every view/modal
+  transition tested, no repeat bug.
+
+Deployment hit the same first-ever-deploy Pages failure pattern as VPAT
+Draft; the disable+re-enable fix alone was sufficient this time (no
+extra follow-up commit needed) — so that fix's reliability seems to vary,
+not a fixed two-step recipe.
+
+Added to the hub (7 products now live total).
+
+**Next:** Batch 2 items 3-4 — Repetitor and Qonuşma, both honest-scope
+"docs + mocked demo + real testable logic + documented backend
+integration snippet" builds like AçıqQapı, or Contexto AZ if a
+reasonable approach to its flagged embedding-quality risk is found first.
+
+---
+
 ## 2026-07-03 — Batch 2, item 1: VPAT Draft shipped
 
 **Fresh market research for Batch 2** (5 new angles: web accessibility
@@ -199,9 +265,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 6 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft) — Batch 1 complete, Batch 2 in progress (1/5)
-- **Monetization-ready (sandbox/test mode wired):** 6
-- **Awaiting real payment setup (needs the user):** 6
+- **Products shipped:** 7 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola) — Batch 1 complete, Batch 2 in progress (2/5)
+- **Monetization-ready (sandbox/test mode wired):** 7
+- **Awaiting real payment setup (needs the user):** 7
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---

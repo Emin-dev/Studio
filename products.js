@@ -69,4 +69,15 @@ export const PRODUCTS = [
     price: '$49 one-time (clean, exportable report)',
     status: 'sandbox'
   },
+  {
+    name: 'Scriver-i-şkola',
+    pitch: 'A word-crafting puzzle with a light roguelike deckbuilding loop — reopen a village school one real word at a time. Untimed, no fail-state.',
+    category: 'game',
+    emoji: '📖',
+    url: 'https://github.com/Emin-dev/scriver-i-skola',
+    liveUrl: 'https://emin-dev.github.io/scriver-i-skola/',
+    monetization: 'buy',
+    price: '$4.99 one-time (full 5-room run)',
+    status: 'sandbox'
+  },
 ];
