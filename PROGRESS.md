@@ -1,5 +1,67 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 2, item 5: Qonuşma shipped — BATCH 2 COMPLETE
+
+**Shipped:** an Azerbaijani grammar and style checker —
+https://github.com/Emin-dev/qonusma, live at
+https://emin-dev.github.io/qonusma/. **Monetization: RENT** — free
+spellcheck tier forever, $4/month Pro tier for suffix agreement/register/
+loanword checks.
+
+**The honest tier split this product was specified around turned out to
+be real and worth building, not just a framing device:** dictionary-level
+spellcheck genuinely doesn't need an LLM at all, so **Tier 1 ships fully
+real** — a real Azerbaijani dictionary (38,136 words, derived from the
+open-source Hunspell dictionary at `mozillaz/spellchecker`, MPL-2.0, the
+same base word list Firefox's own Azerbaijani spellchecker add-on uses —
+I independently confirmed this source repo actually exists via `gh api`
+rather than taking the citation on faith), a real tokenizer, real
+Azerbaijani-aware case folding, real agglutinative suffix-stripping
+(noun cases, verb tenses/persons, negation, necessitative mood, question
+particles, consonant softening), and a real Levenshtein-based suggestion
+engine. **Tier 2** (suffix-agreement/register/loanword checks) genuinely
+needs an LLM API call per check + a server-side proxy to hide the key —
+neither exists here, so it ships as an unmistakably labeled demo: 6
+hand-authored sample texts with pre-written mock suggestions, a persistent
+"NÜMUNƏ/DEMO" banner, and — verified directly, not just claimed — pasting
+arbitrary free text into the Pro-tier box does **not** produce a fake
+"real" response; the UI explicitly states "DİQQƏT: sənin mətnin analiz
+EDİLMƏDİ" (your text was NOT analyzed) and shows a canned sample instead.
+The unproven risk (whether a generic LLM is actually good enough at
+Azerbaijani's agglutinative morphology for Tier 2 to ever work) is stated
+plainly on the landing page, next to the real, verified gap this product
+fills: neither Grammarly nor LanguageTool support Azerbaijani at all.
+
+**Verified for real, independently, exercising the actual data/logic
+directly per the standing lesson (this product's core value IS a
+dataset+algorithm, same category as Contexto AZ/Scriver-i-şkola):**
+re-ran all 3 Node test files myself (44/44 checks: 12 dictionary, 22
+spellcheck, 10 checkout). Called `checkText()` directly with real
+Azerbaijani sentences containing real typos ("Sabh" → correctly flagged,
+top suggestion "sabah"; "mktəbə" → correctly flagged, "məktəb" among
+suggestions) alongside fully correct sentences using real inflected verb
+forms (gözəldir, gəzirəm, bilmirdim, öyrənirəm) — all correctly recognized
+with **zero false positives**, confirming the suffix-stripping claim is
+real, not decorative. Repeated through the actual UI (not just the
+module): typed a sentence with 3 real errors into the live spellchecker
+and got exactly 3 flags with sensible suggestions, including one honest
+"təklif tapılmadı" (no suggestion found) for a colloquial contraction
+outside reasonable edit distance — correct behavior, not a bug. Confirmed
+the Pro-tier free-text-paste behavior directly (see above). Zero console
+errors throughout. Ran the full sandbox checkout (decline, expired-card
+rejection, success). No bugs found beyond what the building agent already
+caught during its own build.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**BATCH 2 IS NOW FULLY SHIPPED (5/5):** VPAT Draft, Scriver-i-şkola,
+Contexto AZ, Repetitor, Qonuşma. Per RULES.md step 7, the next step is
+fresh market research (new angles, skeptical of hype, cutting anything
+that hides a real backend/paid-API cost) to write Batch 3.
+
+---
+
 ## 2026-07-03 — Batch 2, item 4: Repetitor shipped
 
 **Shipped:** an honest-scope concept demo for a WhatsApp-based homework
@@ -421,9 +483,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 9 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor) — Batch 1 complete, Batch 2 in progress (4/5)
-- **Monetization-ready (sandbox/test mode wired):** 9
-- **Awaiting real payment setup (needs the user):** 9
+- **Products shipped:** 10 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma) — Batch 1 AND Batch 2 both complete
+- **Monetization-ready (sandbox/test mode wired):** 10
+- **Awaiting real payment setup (needs the user):** 10
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---

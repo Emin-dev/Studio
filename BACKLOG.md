@@ -191,7 +191,7 @@ below names its real infrastructure cost honestly instead.)
       console errors, mobile layout confirmed non-overflowing, full sandbox
       checkout tested (decline, expired-card rejection, success). Sandbox
       payment only.
-- [ ] **Qonuşma** (dev-tool / creator-tool, Azerbaijani-language-first) — an
+- [x] **Qonuşma** (dev-tool / creator-tool, Azerbaijani-language-first) — an
       Azerbaijani grammar and style checker (suffix agreement, register
       consistency, loanword spelling) — a real, verified gap where neither
       Grammarly nor LanguageTool support the language at all.
@@ -208,6 +208,19 @@ below names its real infrastructure cost honestly instead.)
       pattern as AçıqQapı/Repetitor — never silently fake a working checker.
       Real unproven risk to flag, not hide: whether a generic LLM is
       actually good enough at Azerbaijani morphology for this to work.
+      **SHIPPED** — https://github.com/Emin-dev/qonusma — Tier 1 (free
+      spellcheck) shipped fully real: a real 38,136-word Azerbaijani
+      dictionary (derived from the open-source Hunspell dictionary at
+      mozillaz/spellchecker, MPL-2.0 — independently confirmed this source
+      repo exists, not just cited on faith), real agglutinative
+      suffix-stripping, real Levenshtein suggestions — verified directly
+      against real typo'd and correctly-inflected Azerbaijani sentences,
+      zero false positives. Tier 2 (Pro) ships as an honest, unmistakably
+      labeled demo (6 canned samples; pasting free text explicitly warns
+      "your text was NOT analyzed" rather than faking a response — checked
+      this directly, not just trusted the description). Sandbox payment
+      only. **This is the last item in Batch 2 — the batch is now fully
+      shipped (5/5).**
 
 **Honest take on this batch (from the research):** weaker breakout
 potential than Batch 1 — nobody scored above 55 on market evidence, and
