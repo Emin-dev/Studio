@@ -415,7 +415,7 @@ not just accepted as-is — see each item's REFRAME note.)
       the same real renderer, gated behind an unmistakable "SAMPLE — AUDIO
       WAS NOT ANALYZED" banner. 57/57 Node checks independently re-run.
       Sandbox payment only.
-- [ ] **Palette Forge** (dev-tool) — takes a base color or reference image
+- [x] **Palette Forge** (dev-tool) — takes a base color or reference image
       and generates real, algorithmic color palettes (complementary/
       analogous/triadic/tetradic via real color-theory math, WCAG
       contrast-checked) and exports them as CSS custom properties,
@@ -435,6 +435,40 @@ not just accepted as-is — see each item's REFRAME note.)
       Color) — build it expecting minimal revenue, purely for the
       dev-tool/creator-tool category slot and because it's genuinely
       zero-backend and quick to build well.
+      **SHIPPED** — https://github.com/Emin-dev/palette-forge — real HSL
+      color-wheel math for all 5 harmonies (complementary 180°, analogous
+      ±30°, triadic 120°/240°, tetradic 90°/180°/270°, monochromatic
+      lightness ramp), the real WCAG 2.x relative-luminance formula (not
+      approximated), and real canvas-based dominant-color extraction using
+      saturation-weighted HSL-bucket voting. 70/70 Node checks across 6
+      test files. **Two real bugs found during this build, both fixed
+      before shipping, not just noted:** (1) the image-extraction
+      vibrancy-weighting formula initially let a large low-saturation gray
+      region numerically outvote a smaller, genuinely vibrant color
+      cluster — fixed by squaring the saturation term so achromatic pixels
+      are penalized hard, re-verified with synthetic pixel-array tests;
+      (2) a real interactive-testing-only bug (the building-and-verifying
+      pass was done by the same session here, so this was caught before
+      ship rather than after): the export-format unlock tabs tracked a
+      `data-locked` attribute but never actually removed the hardcoded lock
+      icon `<span>` on purchase, so Tailwind/Style Dictionary tabs stayed
+      visually locked forever even after a successful sandbox payment —
+      fixed by making `updateExportTabsLockState()` add/remove the lock
+      span to match real unlock state, then re-verified end-to-end (fresh
+      reload → locked tabs open buy modal → expired-card correctly
+      rejected → decline test card correctly declines → valid card
+      unlocks → lock icons genuinely disappear). Independently
+      cross-checked the WCAG math by hand outside the app (black/white
+      exactly 21:1; `#767676` on white ~4.54:1; a from-scratch
+      hand-computed luminance calc for `#0000EE` matched the app's live
+      output to 9 decimal places) and independently re-derived a real
+      synthetic PNG (orange #ff8c00) to confirm the real canvas-extraction
+      code path recovers the exact encoded color, not a mock. Zero console
+      errors, zero non-local network requests (confirmed via the network
+      panel — every request was either a same-origin static file or a
+      local `data:`/`blob:` URL). Mobile viewport screenshot confirmed
+      clean layout. Sandbox payment only. **This is the last item in Batch
+      3 — the batch is now fully shipped (5/5).**
 
 **Honest take on this batch overall:** the weakest evidence base of any
 batch so far — 15 of 18 researched candidates were recommended for

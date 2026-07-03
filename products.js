@@ -175,4 +175,16 @@ export const PRODUCTS = [
     price: '$3.49 one-time (levels 10-24)',
     status: 'sandbox'
   },
+  {
+    name: 'Palette Forge',
+    pitch: 'Real color-theory palette generation from a base color or reference image — complementary/analogous/triadic/tetradic/monochromatic harmonies, real WCAG contrast checking, exported as CSS vars, Tailwind config, or Style Dictionary JSON.',
+    category: 'dev-tool',
+    primaryCategory: 'dev-tools',
+    emoji: '🎨',
+    url: 'https://github.com/Emin-dev/palette-forge',
+    liveUrl: 'https://emin-dev.github.io/palette-forge/',
+    monetization: 'buy',
+    price: '$7 one-time (Tailwind + Style Dictionary export, all 5 harmony types)',
+    status: 'sandbox'
+  },
 ];
