@@ -80,4 +80,15 @@ export const PRODUCTS = [
     price: '$4.99 one-time (full 5-room run)',
     status: 'sandbox'
   },
+  {
+    name: 'Contexto AZ',
+    pitch: 'A daily Azerbaijani semantic word-guessing game — one secret word, unlimited guesses, told only how close each guess is. No timer, no streaks, no fail state.',
+    category: 'word game',
+    emoji: '🧠',
+    url: 'https://github.com/Emin-dev/contexto-az',
+    liveUrl: 'https://emin-dev.github.io/contexto-az/',
+    monetization: 'buy',
+    price: '$3 one-time (supports the game — unlocks the past-days archive)',
+    status: 'sandbox'
+  },
 ];
