@@ -1,5 +1,59 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 3, item 5: Palette Forge shipped — BATCH 3 COMPLETE
+
+**Shipped:** a color-palette generator with real WCAG contrast checking —
+https://github.com/Emin-dev/palette-forge, live at
+https://emin-dev.github.io/palette-forge/. **Monetization: BUY** — free
+Complementary harmony + CSS-vars export, one-time $7 unlock for the
+remaining harmony types (Analogous/Triadic/Tetradic/Monochromatic) and
+export formats (Tailwind config, Style Dictionary JSON).
+
+Per its BACKLOG.md reframe: the original pitch's monetizable hook
+(unlimited saved palettes, private profiles, cloud history) needed
+accounts + a database — exactly the "Phase 2 hides a paid server" pattern
+this catalog has cut concepts for before. Shipped the radically narrower,
+honest version instead: no accounts, no cloud save, no saved-palette
+history — purely static, one-shot generation and export, 100%
+client-side. The docs state plainly that this category is already served
+by excellent free tools (Coolors, Adobe Color) and that Palette Forge
+exists for catalog-diversity value, not to compete with them.
+
+**Two real bugs found and fixed during the building agent's own
+verification:** (1) image-extraction vibrancy weighting let a large gray
+region numerically outvote a smaller genuinely-vibrant cluster — fixed by
+squaring the saturation term. (2) the export-tab unlock never removed the
+hardcoded lock icon after a successful purchase, so paid formats stayed
+visually locked forever despite being functionally unlocked — fixed.
+
+**Verified independently, not just from the building agent's report — the
+WCAG contrast math is the one honesty-critical claim in this product, so
+it got the most scrutiny:** re-ran all 6 Node test files myself (70/70
+checks). Independently hand-computed the WCAG relative-luminance formula
+myself for black-on-white (confirmed exactly 21:1) and `#767676`-on-white
+(confirmed ≈4.54:1, matching WebAIM's well-known canonical "just passes
+AA" reference value) — both by my own from-scratch math, not by trusting
+the repo's test assertions. Called the live `contrast.js` module directly
+with `#0000ee` and got 9.397615840239814, which matches the "9.40:1"
+badge actually rendered on the real page exactly — confirming the UI
+displays the real computed value, not a decorative placeholder. Confirmed
+the CSS export for `#0000ee` correctly names its real 180°-hue complement
+as `#eeee00` (blue's true complement is yellow). Confirmed all lock icons
+genuinely disappear from every button label after a successful sandbox
+purchase (the exact bug the building agent found and fixed). Zero console
+errors throughout.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**BATCH 3 IS NOW FULLY SHIPPED (5/5):** Captionist, Postguard, Foresight,
+Ruleshift, Palette Forge. Per RULES.md step 7, next is fresh market
+research for Batch 4 — this time specifically targeting a B2B-service or
+social-adjacent concept, since two research rounds in a row have failed
+to surface a defensible one.
+
+---
+
 ## 2026-07-03 — Batch 3, item 4: Ruleshift shipped
 
 **Shipped:** a Baba-Is-You-style rule-manipulation puzzle —
@@ -757,9 +811,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 14 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard, Foresight, Ruleshift) — Batch 1 and 2 complete, Batch 3 in progress (4/5)
-- **Monetization-ready (sandbox/test mode wired):** 14
-- **Awaiting real payment setup (needs the user):** 14
+- **Products shipped:** 15 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard, Foresight, Ruleshift, Palette Forge) — Batch 1, 2, and 3 ALL complete
+- **Monetization-ready (sandbox/test mode wired):** 15
+- **Awaiting real payment setup (needs the user):** 15
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---
