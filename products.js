@@ -113,4 +113,15 @@ export const PRODUCTS = [
     price: 'Free spellcheck tier; $4/month Pro (suffix/register/loanword checks)',
     status: 'sandbox'
   },
+  {
+    name: 'Captionist',
+    pitch: 'Animated, styled burned-in captions for short-form video — a real word-by-word-highlighted renderer for text you already have timed (.srt/.vtt or typed), plus an honestly-demoed audio-to-caption preview.',
+    category: 'creator-tool',
+    emoji: '🎬',
+    url: 'https://github.com/Emin-dev/captionist',
+    liveUrl: 'https://emin-dev.github.io/captionist/',
+    monetization: 'buy',
+    price: '$7 one-time (all style presets + watermark-free export)',
+    status: 'sandbox'
+  },
 ];
