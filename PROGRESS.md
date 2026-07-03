@@ -1,5 +1,108 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 2, item 3: Contexto AZ shipped
+
+**Shipped:** a daily Azerbaijani semantic word-guessing game —
+https://github.com/Emin-dev/contexto-az, live at
+https://emin-dev.github.io/contexto-az/. One secret word per calendar day
+(deterministic, same for every player), unlimited untimed guesses, each
+guess told only its closeness rank to the secret word. Season 1 ships with
+15 hand-curated secret words, each with a ranked relatedness list of
+150-223 entries. **Monetization: BUY** — $3 one-time "support the game"
+purchase unlocking the past-days archive (today's puzzle is always free;
+explicitly not framed as "remove ads" since this product has no ads).
+
+**The honest risk flagged in BACKLOG.md for this item — embedding/
+similarity quality for a low-resource language — was real, and this
+iteration is mostly about how it was handled, not just that the game got
+built.** There is no live ML/embedding API available in this environment,
+so the relatedness lists were hand-curated with AI assistance and
+WebSearch cross-referencing against real Azerbaijani sources during the
+build. That alone was judged insufficient for a dataset shipping to real
+users, so a **second, independent, adversarial audit pass** was run
+afterward — a dedicated multi-agent workflow with one agent per secret
+word, each agent using WebSearch against Azerbaijani dictionaries (Obastan
+izahlı lüğət, azleks.az orthography dictionary, az.wiktionary.org,
+az.wikipedia.org) to hunt for concrete errors, explicitly instructed to
+flag only real, defensible problems and not debatable judgment calls.
+
+**Result: this caught real errors that the build-time WebSearch pass had
+missed.** Across the 15 word lists (~2,800 entries total), the audit found
+and fixed **37 concrete problems**: misspellings against standard
+Azerbaijani orthography (e.g. "sükunet" → "sükunət", "megapolis" →
+"meqapolis", "vahşi pişik" → "vəhşi pişik"), fabricated/non-existent words
+that don't appear in any real dictionary ("mənzil-villa", "koloğıc",
+"sancaqlı", "siçanovlayan"), foreign-language words mistaken for
+Azerbaijani ("hovli" is Uzbek, not Azerbaijani; "çobankopek" is Turkish),
+grammatically-inflected forms used where the citation form was expected
+("planktonu" → "plankton"), and a handful of real Azerbaijani words with
+the wrong meaning placed too close to the top rank (e.g. "zaval" means
+"calamity/disaster," not anything house-related, but was ranked 45th-
+closest to "ev"/house — removed from that list; the same word "zaval"
+correctly means "decline/sunset" and legitimately belongs in the "günəş"/
+sun word's list, where the audit confirmed it as fine — a good example of
+why fixes were scoped per-word rather than as blanket global corrections).
+One word ("alma") got a broken placeholder result on the first audit
+attempt (notes field just said "test"); re-ran a fresh audit for that one
+word alone rather than trusting a non-answer, which found 2 more real
+errors ("alma pdöresi" — not a real word, → "alma pürəsi"; "şirket" —
+Turkish spelling, → "şirkət"). All fixes were applied via a script
+(`scripts/apply-audit-fixes.mjs`) that verifies no duplicates or
+out-of-bounds list lengths result from each edit, then all 4 Node test
+files were re-run and still pass (106 checks). The in-app "Necə işləyir?"
+panel and README still honestly disclose that this data is AI-assisted
+and audited but **not** validated by a native Azerbaijani speaker — the
+audit reduced the error rate, it did not eliminate the underlying
+disclosed risk, and that caveat stays.
+
+**Verified for real at both layers, not just trusted the building agent's
+report:** all 4 Node test files independently re-run by me (106 checks,
+not just read from the agent's summary). Real interactive browser pass:
+played through multiple guesses across different closeness bands, solved
+the daily puzzle, checked the "Necə işləyir?" honesty panel renders the
+full caveat text, opened the archive/support menu (correctly locked pre-
+purchase), ran a full sandbox checkout (both the decline test card and a
+successful purchase, confirming the archive unlocks afterward and shows
+past days without spoiling today's word), confirmed zero console errors
+throughout, and specifically tested Azerbaijani-aware input normalization
+(case-insensitive including "ə" characters, whitespace-trimmed). The
+global `[hidden] { display: none !important; }` CSS guard (this
+product's version of the Quiet Tiles lesson, applied proactively from the
+start) held correctly with zero repeat bugs.
+
+**Two real bugs found and fixed during my own verification, beyond what
+the building agent reported:**
+1. `preview_click`'s synthetic clicks were unreliable for this page in
+   this session (reported "successfully clicked" but the button's actual
+   click handler never ran, confirmed by checking `.hidden`/DOM state
+   directly afterward) — worked around by driving real click/submit
+   events via `preview_eval` (`element.click()` / `dispatchEvent`), which
+   does exercise the real code path. **This is a tooling/environment note,
+   not a product bug** — logged here so a future iteration doesn't waste
+   time re-diagnosing the same preview-tool flakiness from scratch.
+2. `checkout.js`'s `validateCard` never checked whether a well-formed
+   card's expiry date was already in the past (every other Studio
+   product's checkout does this, via a fixed reference date for the
+   Workflow-script environment's sake — a constraint that only applies to
+   orchestration scripts, not real shipped browser code, so this product's
+   fix correctly uses a real `new Date()` instead of hardcoding a
+   reference date that would silently go stale). Added the check, added a
+   Node test for it, bumped `sw.js`'s `CACHE_VERSION` so real users'
+   service workers actually fetch the fix instead of serving a
+   permanently-stale cached copy (a real, if narrowly-scoped, instance of
+   the same caching-masks-the-fix class of issue as the Quiet Tiles
+   stylesheet-caching lesson, this time hitting a service worker's
+   cache-first JS module instead of a `<link>` tag).
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 2 items 4-5 (Repetitor, Qonuşma) — both honest-scope
+builds needing a documented, not-faked backend integration point.
+
+---
+
+
 One entry per loop iteration. Newest first. Tracks real status honestly —
 see the ledger at the bottom for shipped/monetization-ready/live counts
 (never a fabricated revenue number).
@@ -265,9 +368,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 7 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola) — Batch 1 complete, Batch 2 in progress (2/5)
-- **Monetization-ready (sandbox/test mode wired):** 7
-- **Awaiting real payment setup (needs the user):** 7
+- **Products shipped:** 8 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ) — Batch 1 complete, Batch 2 in progress (3/5)
+- **Monetization-ready (sandbox/test mode wired):** 8
+- **Awaiting real payment setup (needs the user):** 8
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---

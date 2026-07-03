@@ -96,7 +96,7 @@ below names its real infrastructure cost honestly instead.)
       every `hidden`-toggled CSS class got its `[hidden]` override written
       from the start, and the fix held on first real-browser test (no
       repeat bug). Sandbox payment only.
-- [ ] **Contexto, amma Azərbaycanca** (game, Azerbaijani-language-first) —
+- [x] **Contexto, amma Azərbaycanca** (game, Azerbaijani-language-first) —
       a daily semantic-guessing word game in Azerbaijani (guess the secret
       word, get told how semantically close you are). Shareable
       Wordle-style result grid. **Monetization: BUY** — free to play, one-
@@ -108,6 +108,27 @@ below names its real infrastructure cost honestly instead.)
       hide it): embedding/similarity quality for a low-resource language
       needs real validation before shipping — test the actual precomputed
       rankings make sense to a native speaker before calling this done.
+      **SHIPPED** — https://github.com/Emin-dev/contexto-az — 15-word
+      Season 1, hand-curated relatedness lists (150-223 entries each),
+      built with AI + WebSearch cross-referencing against real Azerbaijani
+      dictionaries. The flagged risk was taken seriously rather than
+      hand-waved: a dedicated adversarial audit workflow (one agent per
+      word, WebSearch-verified) ran AFTER the build and found + fixed 37
+      concrete errors (misspellings, fabricated words, foreign-language
+      words, wrong-meaning words) across ~2,800 total entries. This
+      reduced the error rate but did NOT eliminate the underlying risk —
+      the in-app "Necə işləyir?" panel still honestly discloses the data
+      is AI-assisted/audited but not native-speaker-validated, with a
+      GitHub-issues link to report bad rankings. Verified at both layers:
+      106 Node test checks (all re-run independently, not just trusted
+      from the building agent), plus a real interactive browser pass
+      (multiple guesses across closeness bands, full sandbox checkout
+      decline+success paths, archive lock/unlock, zero console errors).
+      Found and fixed 2 more real bugs during verification: a
+      `preview_click` tooling flakiness (worked around via `preview_eval`-
+      driven real click/submit events — a tooling note, not a product
+      bug) and a genuine gap in the sandbox checkout's expiry validation
+      (never checked for already-expired cards). Sandbox payment only.
 - [x] **Scriver-i-şkola** (game) — a premium, one-time-purchase word-
       crafting puzzle with a light roguelike deckbuilding loop, themed
       around reopening a village school (matches the Studio cozy house
