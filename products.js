@@ -91,4 +91,15 @@ export const PRODUCTS = [
     price: '$3 one-time (supports the game — unlocks the past-days archive)',
     status: 'sandbox'
   },
+  {
+    name: 'Repetitor',
+    pitch: 'A WhatsApp-based grading concept for Azerbaijani private tutors — forward a photo of homework, get a structured score breakdown and a parent-ready feedback message. Honest concept demo — unproven premise, real rubric engine.',
+    category: 'B2B service / edtech',
+    emoji: '📝',
+    url: 'https://github.com/Emin-dev/repetitor',
+    liveUrl: 'https://emin-dev.github.io/repetitor/',
+    monetization: 'rent',
+    price: '$12/month per tutor (~100 gradings, pay-as-you-go top-ups beyond)',
+    status: 'sandbox'
+  },
 ];
