@@ -255,7 +255,7 @@ monetization model that doesn't fit). Two "cut" game candidates
 where the judges' own stated objection has a concrete, honest fix applied,
 not just accepted as-is — see each item's REFRAME note.)
 
-- [ ] **Postguard** (dev-tool / privacy-utility) — a "before you post this
+- [x] **Postguard** (dev-tool / privacy-utility) — a "before you post this
       photo" privacy kit: strips EXIF/GPS/author metadata from images and
       PDFs, plus a simple in-browser tool to draw redaction boxes over
       faces/license-plates/addresses before sharing a photo. Both features
@@ -271,6 +271,16 @@ not just accepted as-is — see each item's REFRAME note.)
       expecting reputation/portfolio value, not revenue — its one real
       differentiator is bundling metadata-scrub + redact-blur in a single
       flow, which none of the researched free competitors do together.
+      **SHIPPED** — https://github.com/Emin-dev/postguard — real binary
+      JPEG/EXIF parsing+stripping and PDF /Info+XMP parsing+stripping,
+      real destructive canvas redaction. Independently verified past what
+      the building agent reported: constructed a fresh synthetic JPEG
+      myself, ran it through the live UI, and re-parsed the actual
+      downloaded bytes to confirm EXIF was genuinely gone (not just a
+      success message); confirmed redacted pixels are destructively
+      altered in the real downloaded PNG, not a removable overlay;
+      confirmed via full-source grep that no fetch/XHR exists anywhere.
+      29/29 Node checks independently re-run. Sandbox payment only.
 - [ ] **Foresight** (game) — a small-grid (5x5-8x8), fully deterministic
       turn-based tactics game in the vein of Into the Breach: every enemy
       telegraphs its exact next move, so every loss is a solvable planning

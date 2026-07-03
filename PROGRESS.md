@@ -1,5 +1,63 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 3, item 2: Postguard shipped
+
+**Shipped:** a "before you post this photo" privacy kit —
+https://github.com/Emin-dev/postguard, live at
+https://emin-dev.github.io/postguard/. **Monetization: BUY** — free
+single-file scrub/redact, one-time $3.99 unlock for batch/multi-file
+processing.
+
+Two genuinely real, client-side-only features, bundled in one flow (the
+one honest differentiator this idea has, per its BACKLOG.md reframe —
+this category is otherwise well-served by free tools like Scrambled Exif
+and Chrome's Metadata Remover, named explicitly and honestly on the
+landing page): **(1)** real binary JPEG/EXIF marker-walking and TIFF/IFD
+parsing (GPS lat/lng with ref, Make, Model, Software, DateTime,
+DateTimeOriginal, Artist, Copyright) plus real PDF `/Info`-dict and XMP
+metadata parsing — both with real stripping that removes the actual
+segment/fields, not a cosmetic "cleared" label; **(2)** a canvas
+redaction tool where drawn rectangles destructively overwrite the real
+pixel data (solid-fill or box-blur), not a removable overlay.
+
+**Verified for real, independently — this is a privacy tool, so the
+"is the data actually gone" claim is the one that matters most and
+deserved the most scrutiny, not just a screenshot or a success message:**
+re-ran all 4 Node test files myself (29/29 checks) and read the EXIF
+test's synthetic-JPEG-builder source line by line to confirm it
+constructs byte-accurate TIFF/IFD structures (correct little-endian
+headers, correct IFD0/Exif-sub-IFD/GPS-sub-IFD offset math, correct
+GPS rational-number encoding) rather than a toy fixture. Then went
+further than the agent's own report: independently wrote my OWN,
+differently-structured synthetic JPEG-with-EXIF (Make="ACME",
+Model="X100") from scratch, fed it through the actual live file-input UI
+(via a real `File`/`DataTransfer`), confirmed the UI correctly displayed
+both fields, captured the resulting download's Blob (by intercepting
+`URL.createObjectURL`), and **re-parsed those exact downloaded bytes**
+with the app's own module — confirmed `hasExif: false` and the byte
+count matched exactly what stripping only the APP1 segment should
+produce (17 bytes = SOI + fake-SOS + scan data + EOI, with the whole
+EXIF segment gone). Did the equivalent for redaction: loaded a synthetic
+blue PNG into the real canvas, simulated a real mouse drag to draw a
+box, clicked Apply, read real pixel data before/after (blue → black
+inside the box, untouched outside), then captured and re-decoded the
+actual downloaded PNG file and confirmed the same result survives in the
+real exported bytes, not just the in-memory canvas. Confirmed via `grep`
+across the entire source tree that no `fetch`/`XMLHttpRequest` exists
+anywhere (only local `blob:`/File-API calls), and confirmed via the live
+network panel that the only requests during the whole session were
+same-origin static files plus local blob reads — the "100% local, nothing
+uploaded" claim holds at both the source-code and runtime level. Ran the
+full sandbox checkout (decline, success). Zero console errors throughout.
+No bugs found — this one shipped clean.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 3 items 3-5 (Foresight, Ruleshift, Palette Forge).
+
+---
+
 ## 2026-07-03 — Hub feature: category grouping + activity-based suggestions
 
 **Direct user request** (not from the batch backlog): "make all in
@@ -613,9 +671,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 11 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist) — Batch 1 and 2 complete, Batch 3 in progress (1/5)
-- **Monetization-ready (sandbox/test mode wired):** 11
-- **Awaiting real payment setup (needs the user):** 11
+- **Products shipped:** 12 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard) — Batch 1 and 2 complete, Batch 3 in progress (2/5)
+- **Monetization-ready (sandbox/test mode wired):** 12
+- **Awaiting real payment setup (needs the user):** 12
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---
