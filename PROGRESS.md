@@ -1,5 +1,84 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 3, item 1: Captionist shipped
+
+**Shipped:** an animated, styled burned-in-caption tool for short-form
+video — https://github.com/Emin-dev/captionist, live at
+https://emin-dev.github.io/captionist/. **Monetization: BUY** — free
+basic styling (2 presets, watermarked export), one-time $7 unlock for all
+5 style presets + watermark-free export.
+
+**This item came from Batch 3's adversarial research round** — the
+highest-evidenced concept found (6/10, citing Submagic's real $0→$8M ARR
+bootstrapped case study), but honestly split per its BACKLOG.md reframe:
+**Tier 1 (real, shipped as the actual product)** — genuine .srt/.vtt
+parsing (real timestamp math, real cue-text extraction), a real
+length-weighted per-word timing algorithm, and a real canvas-based
+animated preview renderer with word-by-word highlight timing across 5
+style presets, playable/scrubbable, with optional local-video-file overlay
+via `URL.createObjectURL` (zero backend — the browser's own File API,
+no upload). **Tier 2 (demo only)** — "auto-generate captions from my
+video's audio" is NOT buildable here since real speech-to-text needs a
+paid ASR API call; shipped as 3 clearly-labeled sample transcripts run
+through the same real renderer, with a persistent "SAMPLE — AUDIO WAS NOT
+ANALYZED" banner and a documented (non-executed) server-integration
+snippet naming real ASR providers (AssemblyAI/Deepgram/Whisper) and their
+real per-minute costs. The landing page states plainly that the caption-
+*styling* technology itself is commoditized and not a durable moat — only
+the (unbuilt, backend-dependent) transcription pipeline would be.
+
+**Verified for real, independently, exercising the actual rendering logic
+directly (this product's core value is an algorithm+renderer, same
+category as the Contexto AZ/Qonuşma verification standard):** re-ran all
+4 Node test files myself (57/57 checks: 20 parser, 12 word-timing, 15
+renderer, 10 checkout). In the live browser: parsed a real multi-cue .srt
+snippet through the actual UI (confirmed "Parsed 2 cue(s)."), then did
+TWO independent layers of rendering verification rather than trusting a
+screenshot alone — (1) sampled the canvas's pixel data via hash at 10
+points across the timeline and got 10 distinct hashes, proving the
+animation genuinely changes frame-to-frame, not just looking static; (2)
+called the exported `getFrameState()` function directly with known
+inputs and confirmed the exact correct word is active at each queried
+timestamp (e.g. "this" active at t=1500ms for a cue where "this" spans
+1060-1515ms — correct down to the millisecond). Confirmed the Tier 2 demo
+banner text is unmistakable ("SAMPLE — AUDIO WAS NOT ANALYZED"). Ran the
+full sandbox checkout (decline, expired-card rejection, success). Zero
+console errors throughout. No bugs found beyond what the building agent
+already caught during its own build.
+
+**Tooling notes for future iterations:**
+1. A first screenshot of the loaded canvas appeared blank — this was a
+   viewport/scroll framing artifact, not a rendering bug (confirmed by
+   the pixel-hash and `getFrameState()` checks above). **Lesson: for
+   canvas-based rendering, don't rely on a single screenshot to verify
+   "does it render" — pull pixel data or call the underlying pure
+   functions directly, which is both more reliable and more precise.**
+2. Discovered this environment appears to run only **one active Preview
+   MCP server at a time** — starting a new `preview_start` silently
+   stops the previously running one, and stale serverIds from an earlier
+   `preview_start` call get silently routed to whatever server happens
+   to still be running rather than erroring. This caused a false alarm
+   (a hub verification briefly showed 0 product cards, because it was
+   actually still looking at Captionist's page, not the hub) before I
+   restarted the hub's own preview server and got a correct result.
+   **Lesson: always call a fresh `preview_start` for the specific product
+   you're about to check, immediately before checking it — don't reuse a
+   serverId from earlier in the same session once other products have
+   been previewed in between.**
+3. The hub's own GitHub Pages redeploy hit the familiar "errored" /
+   "Deployment failed, try again later" state again this iteration —
+   fixed with the same established recipe (disable+re-enable via `gh api
+   -X DELETE` then re-POST, plus one follow-up commit), resolving
+   `errored` → `built` within 3 polls.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 3 items 2-5 (Postguard, Foresight, Ruleshift, Palette
+Forge) — read each item's REFRAME notes in BACKLOG.md before building.
+
+---
+
 ## 2026-07-03 — Batch 2, item 5: Qonuşma shipped — BATCH 2 COMPLETE
 
 **Shipped:** an Azerbaijani grammar and style checker —
@@ -483,9 +562,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 10 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma) — Batch 1 AND Batch 2 both complete
-- **Monetization-ready (sandbox/test mode wired):** 10
-- **Awaiting real payment setup (needs the user):** 10
+- **Products shipped:** 11 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist) — Batch 1 and 2 complete, Batch 3 in progress (1/5)
+- **Monetization-ready (sandbox/test mode wired):** 11
+- **Awaiting real payment setup (needs the user):** 11
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---

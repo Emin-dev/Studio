@@ -307,7 +307,7 @@ not just accepted as-is — see each item's REFRAME note.)
       entirely on a third-party checkout link revealing an unlock code,
       no accounts needed), the real risk is puzzle-design quality, not
       infrastructure or monetization shape.
-- [ ] **Captionist** (creator-tool) — animated, styled burned-in captions
+- [x] **Captionist** (creator-tool) — animated, styled burned-in captions
       for short-form video (word-by-word highlight, custom fonts/colors),
       the single most-evidenced concept in this round's research: a direct
       competitor (Submagic) went from $0 to $1M ARR in 3 months (2023) and
@@ -339,6 +339,16 @@ not just accepted as-is — see each item's REFRAME note.)
       tech itself — over a dozen funded competitors (CapCut, VEED, Kapwing,
       Descript, ZapCap...) now do this. Build the real Tier 1 for its own
       genuine utility value; do not expect to replicate Submagic's growth.
+      **SHIPPED** — https://github.com/Emin-dev/captionist — Tier 1
+      (real): .srt/.vtt parsing, length-weighted per-word timing, a real
+      canvas renderer verified via both pixel-hash sampling across 10
+      timeline points (10 distinct hashes — proves genuine per-frame
+      animation) and direct calls to `getFrameState()` confirming the
+      exact correct word is active at each millisecond-precision
+      timestamp queried. Tier 2 (demo): 3 sample transcripts run through
+      the same real renderer, gated behind an unmistakable "SAMPLE — AUDIO
+      WAS NOT ANALYZED" banner. 57/57 Node checks independently re-run.
+      Sandbox payment only.
 - [ ] **Palette Forge** (dev-tool) — takes a base color or reference image
       and generates real, algorithmic color palettes (complementary/
       analogous/triadic/tetradic via real color-theory math, WCAG
