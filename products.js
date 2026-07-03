@@ -139,4 +139,16 @@ export const PRODUCTS = [
     price: '$7 one-time (all style presets + watermark-free export)',
     status: 'sandbox'
   },
+  {
+    name: 'Postguard',
+    pitch: 'Strips real EXIF/GPS metadata from photos and PDFs, plus a redaction tool to permanently black out faces or plates — both 100% local, nothing ever uploaded, in one flow.',
+    category: 'privacy-utility',
+    primaryCategory: 'dev-tools',
+    emoji: '🕶️',
+    url: 'https://github.com/Emin-dev/postguard',
+    liveUrl: 'https://emin-dev.github.io/postguard/',
+    monetization: 'buy',
+    price: '$3.99 one-time (batch/multi-file processing)',
+    status: 'sandbox'
+  },
 ];
