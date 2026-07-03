@@ -76,18 +76,26 @@ specifically for hiding a real backend/paid-API cost behind a "Phase 2" aside
 while marketing a free static layer as the whole product — every item kept
 below names its real infrastructure cost honestly instead.)
 
-- [ ] **VPAT Draft** (dev-tool / B2B service) — a guided, client-side wizard
+- [x] **VPAT Draft** (dev-tool / B2B service) — a guided, client-side wizard
       walking a solo SaaS founder or agency through drafting a VPAT/ACR
-      against WCAG 2.2 + Section 508 criteria (plain-English questions per
-      criterion, conformance-level picker, auto-generated formatted
+      against real WCAG 2.2 Level A/AA criteria (plain-English questions
+      per criterion, conformance-level picker, auto-generated formatted
       document at the end). A drafting *accelerator*, not a compliance
       guarantee or legal audit. **Monetization: BUY** — $49 one-time per
-      generated VPAT, or $19/mo for unlimited drafts + saved product
-      profiles. Fully static/client-side, no backend, no paid API — the
-      safest, most fully-buildable concept in this batch (score 47,
-      highest). Reuses the document-generation pattern already proven in
-      Instant Portfolio and the accessibility expertise proven repeatedly
-      across Quiet Tiles/qeydiyyat/CozyNook.
+      generated VPAT export. Fully static/client-side, no backend, no
+      paid API.
+      **SHIPPED** — https://github.com/Emin-dev/vpat-draft — the real WCAG
+      2.2 dataset (all 55 Level A/AA success criteria) is the actual
+      product content, not placeholders. Verified at both layers: Node
+      tests cover XSS-escaping, all-55-criteria presence, and payment
+      validation; a real browser pass walked the full 6-step wizard,
+      entered a `<script>` payload live and confirmed it renders escaped
+      in the actual iframe DOM, and ran a real sandbox payment to
+      completion (watermark removed, export unlocked, zero console
+      errors). Proactively applied the Quiet Tiles lesson this time —
+      every `hidden`-toggled CSS class got its `[hidden]` override written
+      from the start, and the fix held on first real-browser test (no
+      repeat bug). Sandbox payment only.
 - [ ] **Contexto, amma Azərbaycanca** (game, Azerbaijani-language-first) —
       a daily semantic-guessing word game in Azerbaijani (guess the secret
       word, get told how semantically close you are). Shareable

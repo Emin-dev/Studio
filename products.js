@@ -58,4 +58,15 @@ export const PRODUCTS = [
     price: '$2.99/month (Nook+ — unlimited history + premium themes)',
     status: 'sandbox'
   },
+  {
+    name: 'VPAT Draft',
+    pitch: 'A guided wizard for drafting a VPAT/ACR against all 55 real WCAG 2.2 Level A/AA criteria — plain-English explanations, free preview, pay once to export.',
+    category: 'dev-tool / B2B service',
+    emoji: '📋',
+    url: 'https://github.com/Emin-dev/vpat-draft',
+    liveUrl: 'https://emin-dev.github.io/vpat-draft/',
+    monetization: 'buy',
+    price: '$49 one-time (clean, exportable report)',
+    status: 'sandbox'
+  },
 ];

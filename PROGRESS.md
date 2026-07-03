@@ -6,6 +6,68 @@ see the ledger at the bottom for shipped/monetization-ready/live counts
 
 ---
 
+## 2026-07-03 — Batch 2, item 1: VPAT Draft shipped
+
+**Fresh market research for Batch 2** (5 new angles: web accessibility
+auditing, browser extensions, Turkic-language tools, casual word/trivia
+games, document-generation tools — none repeating Batch 1's research)
+judged 8 candidates adversarially. Honest finding, worth repeating: **3
+candidates were cut specifically for hiding a real backend/paid-API cost
+behind a "Phase 2" aside** while marketing a free static layer as the
+whole product. The 5 kept (VPAT Draft, Contexto AZ, Scriver-i-şkola,
+Repetitor, Qonuşma) each name their real infrastructure cost honestly —
+two (Repetitor, Qonuşma) got the same honest-scope treatment that worked
+for AçıqQapı, written into BACKLOG.md before building.
+
+**Shipped VPAT Draft** — https://github.com/Emin-dev/vpat-draft, live at
+https://emin-dev.github.io/vpat-draft/. Built this one myself directly
+(not delegated) since it was a single item, not a parallel batch. A guided
+wizard covering all 55 real WCAG 2.2 Level A/AA success criteria (the
+actual real dataset, each with an accurate plain-English explanation —
+this content IS the product, not a placeholder), producing a formatted
+VPAT-style document. Free watermarked preview; $49 one-time sandboxed
+export.
+
+**Verified at both layers, proactively applying the Quiet Tiles lesson
+instead of rediscovering it:**
+- Node tests (report/checkout/state, all passing) cover: XSS payloads in
+  product info and remarks never render unescaped; all 55 criteria appear
+  in the generated report; Luhn/expiry/CVC payment validation; progress
+  tracking. One real test bug (not a product bug) caught and fixed along
+  the way — a regex miscounted "Not Evaluated" occurrences because the
+  report's summary chips also contain that label text once, on top of the
+  per-row occurrences.
+- A real browser pass: walked the full 6-step wizard (product info → 4
+  WCAG principle sections → preview/export), entered a
+  `<script>alert(1)</script>` payload live in a remarks field and
+  confirmed it renders as escaped text in the actual iframe DOM (not just
+  the Node test), ran a real sandbox payment through to completion
+  (watermark removed, export button updates, modal auto-closes), zero
+  console errors throughout.
+- Applied the Quiet Tiles CSS lesson **proactively this time**: every
+  class that sets an explicit `display` (`.view`, `.step`,
+  `.modal-backdrop`) got a matching `[hidden]` override written into the
+  CSS from the start, with a comment explaining why. Confirmed via
+  `getComputedStyle` at every step transition that it actually holds — no
+  repeat of the earlier bug.
+
+**Deployment hit the same GitHub Pages "errored"-adjacent failure as
+Studio's own redeploy** (2 consecutive "Deployment failed, try again
+later" failures on a brand-new repo's very first Pages build). The
+documented disable+re-enable fix alone wasn't quite enough this time — it
+took disable+re-enable **plus** one fresh commit-triggered rebuild
+afterward to actually succeed. Noting this refinement: the fix may need a
+follow-up push, not just the reset alone, especially on a repo's first-ever
+deploy.
+
+Added to the hub (6 products now live total).
+
+**Next:** Batch 2 item 2 — Contexto, amma Azərbaycanca (needs real
+validation of embedding/similarity quality for Azerbaijani before shipping,
+per its own honest risk flag).
+
+---
+
 ## 2026-07-03 — Batch 1 complete: 4 products built in parallel + verified
 
 **Shipped all 4 remaining Batch 1 items in one workflow**, each as an
@@ -137,9 +199,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 5 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook) — Batch 1 complete
-- **Monetization-ready (sandbox/test mode wired):** 5
-- **Awaiting real payment setup (needs the user):** 5
+- **Products shipped:** 6 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft) — Batch 1 complete, Batch 2 in progress (1/5)
+- **Monetization-ready (sandbox/test mode wired):** 6
+- **Awaiting real payment setup (needs the user):** 6
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---
