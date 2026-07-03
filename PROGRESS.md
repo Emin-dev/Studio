@@ -1,5 +1,56 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Hub feature: category grouping + activity-based suggestions
+
+**Direct user request** (not from the batch backlog): "make all in
+categories and add ai suggestions based on each user activity." Clarified
+scope with the user first (AskUserQuestion) since "AI suggestions" could
+have meant a real backend-hosted LLM — the user confirmed: hub only (not
+every product), and a client-side heuristic (no real AI, no backend),
+consistent with this whole catalog's zero-hidden-backend-cost discipline.
+
+**Shipped to the hub** (Emin-dev/Studio): each product got a fixed
+`primaryCategory` (games / dev-tools / creator-tools / b2b / wellness —
+5 buckets covering all 11 products with none left over: 3+3+2+2+1). The
+catalog now renders as 5 category sections with filter pills (All +
+each category) instead of one flat list. A "Suggested for you" panel sits
+above the grid: it tallies which category a visitor has clicked into most
+via `localStorage` only, and suggests unviewed products from that
+category (falling back to one pick per category for first-time
+visitors). Labeled honestly in the UI note — "not AI, just a simple local
+tally" — since it genuinely isn't AI and this catalog's whole ethos is
+not overstating what a feature actually does.
+
+**Verified for real:** 16 new Node checks (10 for the suggestion logic in
+`js/activity.js`, 6 for the grouping logic in `js/categories.js`,
+including one that asserts every shipped product has a valid
+`primaryCategory` so a future product can't silently fall through the
+cracks). Real interactive browser pass: confirmed all 5 sections render
+with correct counts, filter pills correctly show/hide sections, clicking
+a product card actually records to `localStorage`, reloading updates the
+suggestions to reflect that activity (verified the exhaustion case too —
+once all 3 games were "viewed," suggestions correctly moved to other
+categories rather than repeating), zero console errors, and mobile layout
+screenshots at 375px looked correct. Caught and fixed one real bug during
+verification: the filter pills were only 36px tall, below this project's
+own established 48px touch-target minimum (stated in style.css's own
+header comment) — fixed to use the existing `--touch-min` variable.
+
+**Deployment note (a new variant of the recurring Pages issue):** this
+redeploy got stuck in "building" with the Pages API status never
+progressing AND no new GitHub Actions run appearing at all for the latest
+commit even after ~160 seconds (different from the usual explicit
+"errored" state, but the same underlying stuck-pipeline problem). The
+established disable+re-enable fix (`gh api -X DELETE` then re-POST)
+resolved it immediately — a fresh workflow run for the correct commit
+appeared right after the reset and completed successfully.
+
+**Next:** back to Batch 3 — Postguard just finished building in the
+background (independent of this hub feature) and needs its own
+verification pass before shipping.
+
+---
+
 ## 2026-07-03 — Batch 3, item 1: Captionist shipped
 
 **Shipped:** an animated, styled burned-in-caption tool for short-form
