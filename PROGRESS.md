@@ -1,5 +1,51 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 3, item 4: Ruleshift shipped
+
+**Shipped:** a Baba-Is-You-style rule-manipulation puzzle —
+https://github.com/Emin-dev/ruleshift, live at
+https://emin-dev.github.io/ruleshift/. **Monetization: BUY** — free
+levels 1-9, one-time $3.49 unlock for levels 10-24.
+
+Per its BACKLOG.md reframe: research originally floated an ambitious
+100-150 level campaign but flagged that as underpricing the real labor/
+quality-bar cost of hand-crafting that much rule-puzzle content blind, with
+no signal this specific rule-set would land with the genre's demanding
+audience (evidence score 3/10). Shipped the reframed, honest size instead:
+24 hand-designed levels, stated plainly in-app as a genre-craft experiment
+for portfolio/catalog-diversity value, not a committed large campaign.
+
+**Two real bugs found and fixed during the building agent's own
+verification, both caught by its solver, not guessed at:** (1) the initial
+push-resolution treated every object as always-draggable, so walking onto
+a WIN or ROCK tile shoved it away instead of letting the player reach/
+overlap it — redesigned around a genre-accurate STOP/PUSH/overlap model.
+(2) two "swap which noun IS PLAYER" levels had no initially-controllable
+entity at all, making them truly unwinnable — fixed by giving BABA a
+starting PLAYER rule in both.
+
+**Verified independently, not just from the building agent's report:**
+re-ran all 5 Node test files myself (59/59 checks — grid, rules, push,
+win, checkout). Re-ran the from-scratch BFS solver script myself
+(`scripts/verify-levels.mjs`) cold — 24/24 levels independently
+re-confirmed solvable, not just trusted from the build log. Real
+interactive browser pass at mobile viewport went beyond just clicking
+around: played level 3 ("Break the Rule"), watched the "WALL IS STOP" tag
+genuinely disappear from the active-rules panel after pushing the "IS"
+word-tile out of horizontal alignment, and confirmed the previously-solid
+wall tiles visually lost their amber rule-highlight and became walkable —
+watched the player character walk straight through where a wall used to
+block, proving the rule system re-evaluates live on every move rather than
+being a scripted animation. Ran the sandbox checkout to a successful
+unlock. Zero console errors throughout.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 3's final item, Palette Forge.
+
+---
+
 ## 2026-07-03 — Batch 3, item 3: Foresight shipped
 
 **Shipped:** a small, fully deterministic grid-tactics game —
@@ -711,9 +757,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 13 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard, Foresight) — Batch 1 and 2 complete, Batch 3 in progress (3/5)
-- **Monetization-ready (sandbox/test mode wired):** 13
-- **Awaiting real payment setup (needs the user):** 13
+- **Products shipped:** 14 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard, Foresight, Ruleshift) — Batch 1 and 2 complete, Batch 3 in progress (4/5)
+- **Monetization-ready (sandbox/test mode wired):** 14
+- **Awaiting real payment setup (needs the user):** 14
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---
