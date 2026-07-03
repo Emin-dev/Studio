@@ -82,6 +82,19 @@ just trust each agent's own (honestly-caveated) verification summary.
 **Next:** Batch 1 is fully shipped. Per RULES.md step 7 — do fresh, real
 market research before writing Batch 2.
 
+**Deployment note for future iterations:** the hub's own redeploy hit a
+genuine GitHub Pages platform issue after this update — `gh api
+repos/Emin-dev/Studio/pages` reported `"status": "errored"` (not just a
+flaky workflow run; the Pages *site* itself was in a broken state), and 4
+consecutive retry-via-new-commit attempts all failed with "Deployment
+failed, try again later." The fix: disable and re-enable Pages entirely
+(`gh api -X DELETE repos/<owner>/<repo>/pages` then re-POST the same
+source config) — this resets the deployment pipeline without touching any
+content, and worked immediately (status went `errored` → `building` →
+`built`). If a future deploy seems stuck after 2-3 retries, check
+`gh api repos/<owner>/<repo>/pages --jq .status` for `"errored"` first,
+and use this reset rather than continuing to retry commits.
+
 ---
 
 ## 2026-07-03 — Batch 1, item 1: Cohort Autopsy shipped
