@@ -1,5 +1,74 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Catalog-wide UX/UI polish pass (all 15 products + hub)
+
+**Direct user request:** "improve ux ui in all apps then deploy and send
+me link." Not a new product ship — a maintenance/polish pass across the
+entire existing catalog, logged here as one consolidated entry rather than
+15 separate ones.
+
+**What was improved, consistently, everywhere:** an 8pt-based spacing
+scale and a concentric radius scale as CSS custom properties (replacing
+scattered literal pixel values); a `prefers-reduced-motion`-aware
+`linear()` spring easing for button/modal/transition motion; real WCAG
+contrast fixes where text-on-background failed AA (several products had
+an accent color around 2.6–2.9:1 that's now 4.5:1+ via a darker
+same-hue variant); touch targets brought up to the established 44–48px
+minimum (a few footer/secondary links were as small as 19px); safe-area
+padding (`env(safe-area-inset-*)` + `viewport-fit=cover`) so fixed
+headers/footers/modals clear the notch/home-indicator on real iPhones;
+`:focus-visible` states for keyboard navigation where missing. A couple
+of products (Foresight) also got a progressive-enhancement View
+Transitions API cross-fade between screens, correctly falling back to an
+instant swap with a feature-detection check, not a hard dependency.
+
+**Real, honest bugs found and fixed along the way, not just cosmetic
+tweaks:**
+- Cohort Autopsy — the very first product built this session — had no
+  committed Node test suite at all (it predates the two-layer-
+  verification convention that solidified afterward). One was added
+  (checks/payment/scan, all passing) as part of this pass.
+- The hub's own footer "Source" link was a 19px touch target, well under
+  the 44px HIG minimum — fixed.
+- Several products (hub, vpat-draft, postguard, ruleshift, palette-forge)
+  had a stray, untracked `.claude/launch.json` directory accidentally
+  created by an earlier build agent, inside the product repo instead of
+  the correct shared launch config — harmless (never committed, never
+  deployed) but cleaned up for hygiene.
+
+**Process note, for honesty:** the work was fanned out as 16 parallel
+background agents (one per product + the hub). 5 completed their own
+full test-verify-deploy cycle unassisted (Quiet Tiles, Instant Portfolio,
+Scriver-i-şkola, Qonuşma, Captionist) — independently re-verified myself
+(re-ran their tests, one live interactive check) rather than trusted
+blindly. The other 11 stalled after making real, complete CSS/HTML edits
+but before committing — confirmed via file-modification timestamps
+showing ~38 minutes of inactivity, not further progress — so I took over
+each one directly: reviewed the actual diff, re-ran that product's test
+suite, did a real interactive Preview MCP pass at mobile viewport
+(screenshot taken for each), then committed, pushed, and verified live
+deployment myself. Three repos (acikqapi, mood-nook, and separately
+vpat-draft) hit the known GitHub Pages "errored"/flaky-deploy pattern
+during this — resolved via the established disable+re-enable fix, and
+for the two that still failed after that, a direct `gh run rerun` plus
+confirming actual live content via `curl` (rather than trusting the
+Pages API's own `.status` field, which lagged/misreported in a couple of
+cases even after the real deploy had succeeded).
+
+**Verified for real, not assumed:** every one of the 15 products'
+existing Node test suites re-run and passing (zero regressions), a real
+interactive browser pass with a mobile-viewport screenshot for the 10 I
+took over directly plus a spot-check on the 5 that completed
+autonomously, and a final direct `curl` sweep confirming all 16 live
+URLs (15 products + hub) actually serve the new CSS, not a stale cached
+version.
+
+**No monetization, pricing, or functional changes** — this was scoped
+strictly to visual/accessibility/motion polish per the user's request;
+every product's core logic, tests, and pricing are unchanged.
+
+---
+
 ## 2026-07-03 — Batch 3, item 5: Palette Forge shipped — BATCH 3 COMPLETE
 
 **Shipped:** a color-palette generator with real WCAG contrast checking —
