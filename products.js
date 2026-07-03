@@ -2,11 +2,16 @@
 // renders straight from this list. See RULES.md for the monetization
 // constraint (rent | buy | sell — never ads) and BACKLOG.md for what's next.
 
+// primaryCategory buckets one of the shipped products into for hub grouping/
+// filtering/suggestions — a small fixed enum, kept separate from the
+// free-text `category` field (which stays as the descriptive label shown on
+// each card). See js/categories.js for the label/order mapping.
 export const PRODUCTS = [
   {
     name: 'Cohort Autopsy',
     pitch: 'Scans a whole bootcamp cohort\'s repos for real beginner security mistakes — leaked secrets, unauthenticated admin panels, hardcoded backdoors — into one instructor report.',
     category: 'B2B service',
+    primaryCategory: 'b2b',
     emoji: '🔍',
     url: 'https://github.com/Emin-dev/cohort-autopsy',
     liveUrl: 'https://emin-dev.github.io/cohort-autopsy/',
@@ -18,6 +23,7 @@ export const PRODUCTS = [
     name: 'AçıqQapı',
     pitch: 'The WhatsApp-link phone verification pattern — no SMS OTP, no Meta Business Verification — packaged as docs, an honest demo, and a real crypto-based token engine.',
     category: 'developer-tool',
+    primaryCategory: 'dev-tools',
     emoji: '🚪',
     url: 'https://github.com/Emin-dev/acikqapi',
     liveUrl: 'https://emin-dev.github.io/acikqapi/',
@@ -29,6 +35,7 @@ export const PRODUCTS = [
     name: 'Quiet Tiles',
     pitch: 'A calm, untimed Flow-style path-connection puzzle — 70 hand-verified levels, no timers, no fail state, no ads.',
     category: 'puzzle game',
+    primaryCategory: 'games',
     emoji: '🧩',
     url: 'https://github.com/Emin-dev/quiet-tiles',
     liveUrl: 'https://emin-dev.github.io/quiet-tiles/',
@@ -40,6 +47,7 @@ export const PRODUCTS = [
     name: 'Instant Portfolio',
     pitch: 'Answer a short guided form and get a clean, modern, mobile-first portfolio site instantly — preview free, pay once to export.',
     category: 'creator-tool',
+    primaryCategory: 'creator-tools',
     emoji: '🗂️',
     url: 'https://github.com/Emin-dev/instant-portfolio',
     liveUrl: 'https://emin-dev.github.io/instant-portfolio/',
@@ -51,6 +59,7 @@ export const PRODUCTS = [
     name: 'Mood Nook',
     pitch: 'A calm, private "one moment a day" mood scrapbook — no likes, no streaks, no feed, just a short note you keep for yourself.',
     category: 'social-adjacent',
+    primaryCategory: 'wellness',
     emoji: '🌿',
     url: 'https://github.com/Emin-dev/mood-nook',
     liveUrl: 'https://emin-dev.github.io/mood-nook/',
@@ -62,6 +71,7 @@ export const PRODUCTS = [
     name: 'VPAT Draft',
     pitch: 'A guided wizard for drafting a VPAT/ACR against all 55 real WCAG 2.2 Level A/AA criteria — plain-English explanations, free preview, pay once to export.',
     category: 'dev-tool / B2B service',
+    primaryCategory: 'dev-tools',
     emoji: '📋',
     url: 'https://github.com/Emin-dev/vpat-draft',
     liveUrl: 'https://emin-dev.github.io/vpat-draft/',
@@ -73,6 +83,7 @@ export const PRODUCTS = [
     name: 'Scriver-i-şkola',
     pitch: 'A word-crafting puzzle with a light roguelike deckbuilding loop — reopen a village school one real word at a time. Untimed, no fail-state.',
     category: 'game',
+    primaryCategory: 'games',
     emoji: '📖',
     url: 'https://github.com/Emin-dev/scriver-i-skola',
     liveUrl: 'https://emin-dev.github.io/scriver-i-skola/',
@@ -84,6 +95,7 @@ export const PRODUCTS = [
     name: 'Contexto AZ',
     pitch: 'A daily Azerbaijani semantic word-guessing game — one secret word, unlimited guesses, told only how close each guess is. No timer, no streaks, no fail state.',
     category: 'word game',
+    primaryCategory: 'games',
     emoji: '🧠',
     url: 'https://github.com/Emin-dev/contexto-az',
     liveUrl: 'https://emin-dev.github.io/contexto-az/',
@@ -95,6 +107,7 @@ export const PRODUCTS = [
     name: 'Repetitor',
     pitch: 'A WhatsApp-based grading concept for Azerbaijani private tutors — forward a photo of homework, get a structured score breakdown and a parent-ready feedback message. Honest concept demo — unproven premise, real rubric engine.',
     category: 'B2B service / edtech',
+    primaryCategory: 'b2b',
     emoji: '📝',
     url: 'https://github.com/Emin-dev/repetitor',
     liveUrl: 'https://emin-dev.github.io/repetitor/',
@@ -106,6 +119,7 @@ export const PRODUCTS = [
     name: 'Qonuşma',
     pitch: 'An Azerbaijani grammar and style checker — a real, free spellchecker (neither Grammarly nor LanguageTool support the language at all) plus a demoed Pro tier for suffix agreement, register, and loanword checks.',
     category: 'dev-tool / creator-tool',
+    primaryCategory: 'dev-tools',
     emoji: '✍️',
     url: 'https://github.com/Emin-dev/qonusma',
     liveUrl: 'https://emin-dev.github.io/qonusma/',
@@ -117,6 +131,7 @@ export const PRODUCTS = [
     name: 'Captionist',
     pitch: 'Animated, styled burned-in captions for short-form video — a real word-by-word-highlighted renderer for text you already have timed (.srt/.vtt or typed), plus an honestly-demoed audio-to-caption preview.',
     category: 'creator-tool',
+    primaryCategory: 'creator-tools',
     emoji: '🎬',
     url: 'https://github.com/Emin-dev/captionist',
     liveUrl: 'https://emin-dev.github.io/captionist/',

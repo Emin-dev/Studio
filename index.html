@@ -17,14 +17,29 @@
             <p class="tagline">A growing catalog of small, honest products.<br>No ads, ever — rent, buy, or sell only.</p>
         </header>
 
+        <section id="suggestions" class="suggestions" aria-label="Suggested for you" hidden>
+            <h2 class="suggestions-heading">Suggested for you</h2>
+            <p id="suggestions-note" class="suggestions-note"></p>
+            <div id="suggestions-list" class="suggestions-list"></div>
+        </section>
+
+        <nav id="category-filters" class="category-filters" aria-label="Filter by category"></nav>
+
         <main id="catalog" class="catalog" aria-label="Product catalog"></main>
+
+        <template id="category-section-template">
+            <section class="category-section">
+                <h2 class="category-heading"></h2>
+                <div class="category-products"></div>
+            </section>
+        </template>
 
         <template id="product-card-template">
             <a class="product-card" href="#" target="_blank" rel="noopener">
                 <span class="product-emoji" aria-hidden="true"></span>
                 <div class="product-body">
                     <div class="product-title-row">
-                        <h2 class="product-name"></h2>
+                        <h3 class="product-name"></h3>
                         <span class="product-category"></span>
                     </div>
                     <p class="product-pitch"></p>
