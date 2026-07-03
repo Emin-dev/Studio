@@ -67,10 +67,101 @@ monetization model per RULES.md's hard constraint (rent/buy/sell only).
 
 **Batch 1 complete — all 5 items shipped, verified (including real
 interactive browser testing beyond what the building agents could do
-themselves), and live.** See PROGRESS.md for the full log. Next: fresh
-market research per RULES.md step 7, then Batch 2.
+themselves), and live.** See PROGRESS.md for the full log.
+
+## Batch 2 (fresh research: 5 angles not covered in Batch 1 — web accessibility
+auditing, browser extensions, Turkic-language tools, casual word/trivia games,
+document-generation tools. Judged adversarially; 3 candidates were CUT
+specifically for hiding a real backend/paid-API cost behind a "Phase 2" aside
+while marketing a free static layer as the whole product — every item kept
+below names its real infrastructure cost honestly instead.)
+
+- [ ] **VPAT Draft** (dev-tool / B2B service) — a guided, client-side wizard
+      walking a solo SaaS founder or agency through drafting a VPAT/ACR
+      against WCAG 2.2 + Section 508 criteria (plain-English questions per
+      criterion, conformance-level picker, auto-generated formatted
+      document at the end). A drafting *accelerator*, not a compliance
+      guarantee or legal audit. **Monetization: BUY** — $49 one-time per
+      generated VPAT, or $19/mo for unlimited drafts + saved product
+      profiles. Fully static/client-side, no backend, no paid API — the
+      safest, most fully-buildable concept in this batch (score 47,
+      highest). Reuses the document-generation pattern already proven in
+      Instant Portfolio and the accessibility expertise proven repeatedly
+      across Quiet Tiles/qeydiyyat/CozyNook.
+- [ ] **Contexto, amma Azərbaycanca** (game, Azerbaijani-language-first) —
+      a daily semantic-guessing word game in Azerbaijani (guess the secret
+      word, get told how semantically close you are). Shareable
+      Wordle-style result grid. **Monetization: BUY** — free to play, one-
+      time $3 "remove ads/support the game" IAP (note: NO actual ads ever
+      run per RULES.md — this is purely a support-the-dev unlock, framed
+      honestly as such, never gated content). Fully static: the daily word
+      + precomputed similarity rankings ship as a flat JSON file, no
+      backend, no per-request AI cost. Real honest risk (flag this, don't
+      hide it): embedding/similarity quality for a low-resource language
+      needs real validation before shipping — test the actual precomputed
+      rankings make sense to a native speaker before calling this done.
+- [ ] **Scriver-i-şkola** (game) — a premium, one-time-purchase word-
+      crafting puzzle with a light roguelike deckbuilding loop, themed
+      around reopening a village school (matches the Studio cozy house
+      style — no combat, no violence framing). **Monetization: BUY** —
+      $4.99 one-time. Client-side dictionary-based word validation,
+      deterministic seeded runs, localStorage progression — no backend
+      needed for v1. Honest self-rating: a modest side-bet ($0-20K), not a
+      business plan — build for the craft/portfolio value.
+- [ ] **Repetitor** (B2B service / edtech, Azerbaijani-language-first) — a
+      WhatsApp-based grading assistant for Azerbaijani private tutors:
+      forward a photo of homework, get a structured grade breakdown +
+      parent-ready feedback message in Azerbaijani. **Monetization: RENT**
+      — $12/mo per tutor for ~100 gradings, pay-as-you-go top-ups beyond.
+      **HONEST SCOPE NOTE, same discipline as AçıqQapı — read before
+      building:** this concept is explicitly, honestly backend-dependent
+      (real WhatsApp Business Cloud API + a real OCR/vision-LLM API call
+      per photo + a database for accounts/usage/billing) — do NOT fake
+      this or reuse qeydiyyat's real production WhatsApp credentials. Build
+      the same honest v1 shape that worked for AçıqQapı: (1) a docs/
+      landing page explaining the real value prop, (2) an interactive demo
+      with a clearly-labeled MOCK "forward a photo" step (a few pre-loaded
+      sample homework images + pre-written mock grade breakdowns, not a
+      live vision-model call), (3) the actual grading-RUBRIC/parsing logic
+      that doesn't need external APIs (e.g. a structured rubric-scoring
+      function given already-extracted text) — build and Node-test this
+      part for real, (4) a documented server-side integration snippet
+      showing how a real customer would wire WhatsApp Cloud API + a vision
+      LLM into a backend they control. The honest take on this research
+      batch is explicit: **pilot this with 3-5 real tutors before writing
+      more production code** — the whole premise (tutors will pay $12/mo
+      and trust an AI grade enough to forward it to a parent) is unverified
+      guesswork, not evidenced demand.
+- [ ] **Qonuşma** (dev-tool / creator-tool, Azerbaijani-language-first) — an
+      Azerbaijani grammar and style checker (suffix agreement, register
+      consistency, loanword spelling) — a real, verified gap where neither
+      Grammarly nor LanguageTool support the language at all.
+      **Monetization: RENT** — free basic spellcheck tier, $4/mo pro tier
+      for style + register + suffix-agreement checks. **HONEST SCOPE
+      NOTE:** this needs a real (if thin) backend — an LLM API call per
+      check requires a server-side proxy to hide the API key and
+      rate-limit (an API key can never be embedded in client-side JS, same
+      principle as AçıqQapı's WhatsApp-token rule). Build the editor UI +
+      the actual prompt/rubric logic (Node-testable), but the live-checking
+      feature must either (a) genuinely be wired to a real backend proxy if
+      one gets built, or (b) ship as a clearly-labeled DEMO with mocked
+      responses plus the same documented server-side integration-snippet
+      pattern as AçıqQapı/Repetitor — never silently fake a working checker.
+      Real unproven risk to flag, not hide: whether a generic LLM is
+      actually good enough at Azerbaijani morphology for this to work.
+
+**Honest take on this batch (from the research):** weaker breakout
+potential than Batch 1 — nobody scored above 55 on market evidence, and
+none of these five is a real venture on its own (VPAT Draft improves on a
+document that's already free elsewhere; Contexto AZ and Scriver are
+self-admitted $0-20K portfolio bets; Qonuşma and Repetitor cap out at
+low-five-figures niches by their own evidence). What this batch does well:
+real category spread (dev-tool, two AZ-language products, two games) where
+every single item names its real infrastructure cost instead of hiding it.
+Build these expecting reputation/skill value, not revenue — and pilot
+Repetitor with real tutors before investing further in it specifically.
 
 ---
-*When Batch 1 is fully checked off: do fresh market research (RULES.md step
-7), and write Batch 2 here with the same category-diversity + monetization-
+*When Batch 2 is fully checked off: do fresh market research (RULES.md step
+7), and write Batch 3 here with the same category-diversity + monetization-
 model discipline.*
