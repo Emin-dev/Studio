@@ -234,6 +234,153 @@ Build these expecting reputation/skill value, not revenue — and pilot
 Repetitor with real tutors before investing further in it specifically.
 
 ---
-*When Batch 2 is fully checked off: do fresh market research (RULES.md step
-7), and write Batch 3 here with the same category-diversity + monetization-
-model discipline.*
+
+## Batch 3 (fresh research: 6 new angles — client-side privacy utilities,
+Azerbaijani freelancer/finance tools, dev utility tools, an unexplored
+indie game genre, creator-content tools, Azerbaijani civic/local
+calculators. Judged adversarially: 18 candidates researched with real
+WebSearch-cited evidence, then each independently judged for market-
+evidence strength, hidden-backend-cost risk, and monetization fit. This
+round was notably harsher than Batch 1/2 — 0 clean "build" verdicts, only
+3 "build_with_changes", 15 "cut". All 3 Azerbaijani-freelancer-finance
+candidates and all 3 civic-calculator candidates were cut — either weak
+repeat-purchase logic (an invoice generator has no reason to bring anyone
+back once their details are filled in once) or no rent/buy/sell hook at
+all (a unit converter is a one-and-done free utility, correctly flagged
+"ads_only_reject" and rejected outright rather than forced into a
+monetization model that doesn't fit). Two "cut" game candidates
+(Idle/Incremental Empire Builder, and — with a specific fix applied below
+— the Rule-Bending Word-Block Puzzle) and one "cut" dev-tool
+(Color-palette/design-token generator) are included below anyway, but only
+where the judges' own stated objection has a concrete, honest fix applied,
+not just accepted as-is — see each item's REFRAME note.)
+
+- [ ] **Postguard** (dev-tool / privacy-utility) — a "before you post this
+      photo" privacy kit: strips EXIF/GPS/author metadata from images and
+      PDFs, plus a simple in-browser tool to draw redaction boxes over
+      faces/license-plates/addresses before sharing a photo. Both features
+      are genuinely, provably 100% client-side (confirmed by every real
+      competitor's own "no upload, all local" marketing) — no backend, no
+      per-request cost. **Monetization: BUY** — free single-file scrub,
+      $3.99 one-time to unlock batch/folder processing and combined
+      image+PDF passes in one flow. **HONEST TAKE (from the research):**
+      market evidence scored low (3/10) — this category is already served
+      by well-reviewed FREE tools (Scrambled Exif: 54k+ downloads, 4.04/5;
+      Chrome's Metadata Remover: 4.6/5) and every paid comp found was a
+      tiny $2.99-$4.99 IAP with no evidence of real volume. Build this
+      expecting reputation/portfolio value, not revenue — its one real
+      differentiator is bundling metadata-scrub + redact-blur in a single
+      flow, which none of the researched free competitors do together.
+- [ ] **Foresight** (game) — a small-grid (5x5-8x8), fully deterministic
+      turn-based tactics game in the vein of Into the Breach: every enemy
+      telegraphs its exact next move, so every loss is a solvable planning
+      failure, not bad luck. A handful of unit types, a short campaign of
+      bite-sized missions (not a huge scope — keep this closer to Quiet
+      Tiles' size than a full commercial campaign), permadeath-lite runs,
+      all mission/unit/AI data as plain JS objects evaluated per turn.
+      **Monetization: BUY** — free first act/one squad, one-time unlock
+      for the full mission set + extra squads. Entirely static: deterministic
+      AI needs no server to prevent cheating, mission data ships embedded,
+      progress in localStorage. **HONEST TAKE:** evidence score was low
+      (2/10) — the cited evidence (Into the Breach's $14.99 price point,
+      94% positive reviews) is 100% about a critically-acclaimed studio
+      with press relationships and Steam's discovery algorithm; none of it
+      transfers to an unbranded clone with no storefront, which the
+      research explicitly named a "reference-class fallacy." Build this as
+      a craft/genre-diversity bet (this catalog has zero grid-tactics
+      games so far), not a revenue plan.
+- [ ] **Ruleshift** (game) — a Baba-Is-You-style rule-manipulation puzzle:
+      push word-blocks around a grid to rewrite the rules of the level
+      itself. Rule-parser is pure JS grid/string logic, levels ship as
+      embedded JSON, progress/undo in localStorage. **Monetization: BUY**
+      — one-time unlock for the full pack. **REFRAME APPLIED (per the
+      research's own stated fix, not shipped as originally pitched):** the
+      original pitch specified an ambitious 100-150 hand-designed level
+      campaign, which the judge flagged as underpricing the real labor/
+      quality-bar cost of hand-crafting that much rule-puzzle content
+      blind, with no signal the specific rule-set will land with the
+      genre's demanding audience. Ship a much smaller pack instead — 20-30
+      levels, modest price ($2.99-3.99, matching Quiet Tiles) — and treat
+      it explicitly as a genre-craft experiment, not a committed large
+      campaign. **HONEST TAKE:** evidence score 3/10; the static/zero-
+      backend architecture is genuinely sound (confirmed: payment can ride
+      entirely on a third-party checkout link revealing an unlock code,
+      no accounts needed), the real risk is puzzle-design quality, not
+      infrastructure or monetization shape.
+- [ ] **Captionist** (creator-tool) — animated, styled burned-in captions
+      for short-form video (word-by-word highlight, custom fonts/colors),
+      the single most-evidenced concept in this round's research: a direct
+      competitor (Submagic) went from $0 to $1M ARR in 3 months (2023) and
+      $8M ARR by 2025, fully bootstrapped. **HONEST SCOPE NOTE — read
+      before building, same discipline as AçıqQapı/Repetitor/Qonuşma:** the
+      part people actually pay for — turning raw video AUDIO into
+      timestamped text — genuinely needs a real speech-to-text API call
+      (AssemblyAI/Deepgram/Whisper, real per-minute cost) and cannot be
+      faked client-side. Split honestly: **Tier 1 (real, free)** — user
+      provides already-timed captions (paste an .srt/.vtt file, or type
+      lines with timestamps manually) and gets a REAL, fully-functional
+      animated caption renderer (word-by-word highlight timing, font/color
+      styling, canvas-based preview + exportable overlay) — genuinely
+      useful on its own for anyone who already has a transcript (many
+      creators do, from their editing software). **Tier 2 (DEMO only)** —
+      "auto-generate captions straight from my video's audio" is NOT
+      buildable here; ship it as a clearly-labeled sample (a few pre-
+      transcribed demo videos showing the full pipeline's output) plus a
+      documented, illustrative-only server integration snippet showing how
+      a real customer would wire a real ASR API into this repo's real
+      renderer. **Monetization: BUY** — free basic styling, one-time
+      unlock for premium animated styles + watermark-free export (matches
+      what's actually real and buildable, not the subscription model the
+      market comps use, since we don't have the recurring ASR cost that
+      justifies a subscription). **HONEST TAKE:** despite the highest
+      evidence score in this round (6/10), the research is explicit that
+      Submagic's actual moat was 2023-era distribution timing (a 10,000+
+      TikTok-affiliate referral engine), not the now-commoditized caption
+      tech itself — over a dozen funded competitors (CapCut, VEED, Kapwing,
+      Descript, ZapCap...) now do this. Build the real Tier 1 for its own
+      genuine utility value; do not expect to replicate Submagic's growth.
+- [ ] **Palette Forge** (dev-tool) — takes a base color or reference image
+      and generates real, algorithmic color palettes (complementary/
+      analogous/triadic/tetradic via real color-theory math, WCAG
+      contrast-checked) and exports them as CSS custom properties,
+      Tailwind config, or Style Dictionary JSON. **REFRAME APPLIED:** the
+      original pitch's monetizable hook (unlimited saved palettes, private
+      profiles, cloud history) needs accounts + a database — exactly the
+      "Phase 2 hides a paid server" pattern this catalog has cut before.
+      Ship the radically narrower version the research itself named as the
+      only honest path: **NO accounts, NO cloud save, NO saved-palette
+      history** — purely static, one-shot generation and export.
+      **Monetization: BUY** — free single-format copy (CSS vars only),
+      one-time ~$6-9 unlock for the full multi-format export bundle
+      (Tailwind config + Style Dictionary JSON + more palette harmonies).
+      **HONEST TAKE:** the research explicitly called this "better used as
+      a filler item than a flagship" given how saturated and well-served
+      this category already is by excellent free tools (Coolors, Adobe
+      Color) — build it expecting minimal revenue, purely for the
+      dev-tool/creator-tool category slot and because it's genuinely
+      zero-backend and quick to build well.
+
+**Honest take on this batch overall:** the weakest evidence base of any
+batch so far — 15 of 18 researched candidates were recommended for
+outright cut, and every item kept above required an explicit reframe away
+from its original pitch to stay honestly zero-backend or to fix a weak
+monetization story. Two real category gaps this round: no defensible
+B2B-service candidate and no defensible social-adjacent candidate survived
+adversarial judging (the closest B2B-shaped candidates — API mocking
+client, bulk social-media data-deletion tool — were cut specifically for
+needing a live backend + auth + billing from day one, which is a different,
+higher-commitment business than anything else in this catalog, not a
+"Phase 2" trim). Rather than force a weak pick into those slots just to
+hit a round number, Batch 3 leans dev-tool/game/creator-tool this round;
+Batch 4's research should specifically target sourcing real evidence for a
+B2B-service or social-adjacent concept. All five items above are honestly
+low-expectation (evidence scores 2-6 out of 10) — build these for
+craft/portfolio/category-diversity value, exactly as Batch 2 was, not as
+a revenue bet.
+
+---
+*When Batch 3 is fully checked off: do fresh market research (RULES.md step
+7), and write Batch 4 here with the same category-diversity + monetization-
+model discipline — and specifically try to source real evidence for a
+B2B-service or social-adjacent concept, which two research rounds in a row
+have failed to find.*
