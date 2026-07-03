@@ -1,5 +1,45 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 3, item 3: Foresight shipped
+
+**Shipped:** a small, fully deterministic grid-tactics game —
+https://github.com/Emin-dev/foresight, live at
+https://emin-dev.github.io/foresight/. **Monetization: BUY** — free
+Reedshore island (5 missions), one-time $4.99 unlock for Stonemarch +
+Windkeep (10 more missions).
+
+The whole hook is a "no lies" promise: at the start of every turn, each
+enemy's exact next move/attack is telegraphed on the board before the
+player acts, and resolution always matches exactly what was shown — losses
+are planning failures, not bad luck. Per its BACKLOG.md reframe, this was
+built as a craft/genre-diversity bet (research scored it 2/10 — the cited
+evidence is entirely about Into the Breach's own acclaim/Steam discovery,
+which doesn't transfer to an unbranded clone, a "reference-class fallacy"
+the docs state plainly), not a revenue plan. 15 missions across 3 islands
+on a 6x6 grid, all independently confirmed winnable (11 via exhaustive
+brute-force search, 4 via 200k-trial random search during development —
+this caught and fixed 2 real mission-design bugs before shipping).
+
+**Verified independently, not just from the building agent's report:**
+re-ran all 5 Node test files myself (63/63 checks — board, enemies, units,
+run including two fully-scripted mission playthroughs, checkout). Real
+interactive browser pass at mobile viewport: played "The Well at Dawn,"
+and confirmed the telegraph system is genuinely legible, not just claimed
+— a dashed amber outline marks exactly where the crawler will move, a
+solid red outline marks exactly what it will strike, paired with a plain-
+text confirmation ("Crawler will move to (4,5) and strike (4,4) for 1.")
+that matched the visual markers exactly. Confirmed the honest-framing
+section renders correctly on the landing page. Zero console errors. Live
+GitHub Pages deployment confirmed serving real files.
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 3 item 4/5, Ruleshift (building now), then item 5/5,
+Palette Forge.
+
+---
+
 ## 2026-07-03 — Batch 3, item 2: Postguard shipped
 
 **Shipped:** a "before you post this photo" privacy kit —
@@ -671,9 +711,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 12 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard) — Batch 1 and 2 complete, Batch 3 in progress (2/5)
-- **Monetization-ready (sandbox/test mode wired):** 12
-- **Awaiting real payment setup (needs the user):** 12
+- **Products shipped:** 13 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor, Qonuşma, Captionist, Postguard, Foresight) — Batch 1 and 2 complete, Batch 3 in progress (3/5)
+- **Monetization-ready (sandbox/test mode wired):** 13
+- **Awaiting real payment setup (needs the user):** 13
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---
