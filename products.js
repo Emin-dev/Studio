@@ -163,4 +163,16 @@ export const PRODUCTS = [
     price: '$4.99 one-time (Stonemarch + Windkeep — 10 more missions)',
     status: 'sandbox'
   },
+  {
+    name: 'Ruleshift',
+    pitch: 'A Baba-Is-You-style rule-manipulation puzzle — push word-blocks into alignment to rewrite the rules of the level live, in real time. 24 hand-designed levels, each independently re-verified solvable by a brute-force solver.',
+    category: 'puzzle game',
+    primaryCategory: 'games',
+    emoji: '🧱',
+    url: 'https://github.com/Emin-dev/ruleshift',
+    liveUrl: 'https://emin-dev.github.io/ruleshift/',
+    monetization: 'buy',
+    price: '$3.49 one-time (levels 10-24)',
+    status: 'sandbox'
+  },
 ];

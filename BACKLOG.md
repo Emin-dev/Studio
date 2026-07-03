@@ -328,7 +328,7 @@ not just accepted as-is — see each item's REFRAME note.)
       checkout 11). Zero console errors and zero failed network requests
       throughout. Sandbox payment only, as with every other product in this
       catalog.
-- [ ] **Ruleshift** (game) — a Baba-Is-You-style rule-manipulation puzzle:
+- [x] **Ruleshift** (game) — a Baba-Is-You-style rule-manipulation puzzle:
       push word-blocks around a grid to rewrite the rules of the level
       itself. Rule-parser is pure JS grid/string logic, levels ship as
       embedded JSON, progress/undo in localStorage. **Monetization: BUY**
@@ -346,6 +346,33 @@ not just accepted as-is — see each item's REFRAME note.)
       entirely on a third-party checkout link revealing an unlock code,
       no accounts needed), the real risk is puzzle-design quality, not
       infrastructure or monetization shape.
+      **SHIPPED** — https://github.com/Emin-dev/ruleshift — a genuine
+      rule-parser (`js/rules.js`) that scans the grid every move for
+      aligned `NOUN IS PROPERTY` triples in both directions and returns
+      the live active-rule set, driving both gameplay and the amber
+      tile-glow highlight from the same parsed state (verified against
+      the actual grid, not trusted cosmetically). Real push resolution
+      (`js/push.js`) with a genre-accurate STOP/PUSH/overlap model: a
+      first pass wired every object as always-draggable, which caused a
+      real bug caught during interactive testing (pushing into a WIN tile
+      shoved it away instead of letting the player reach it) — fixed by
+      making only PUSH-ruled objects (and word-tiles) chain-push, with
+      everything else simply overlapped, which is what lets a player walk
+      onto a WIN or SINK tile as intended. 24 hand-designed levels
+      (free tier: 1-9), every one independently re-verified solvable by a
+      from-scratch brute-force BFS solver (`scripts/verify-levels.mjs`,
+      re-run cold from the raw level data) — this caught two genuinely
+      unwinnable levels (a "swap which noun IS PLAYER" puzzle with no
+      initial controllable entity at all) before shipping, both redesigned
+      and re-verified. 59/59 Node checks across grid/rules/push/win/
+      checkout independently re-run. Interactive verification played
+      through multiple levels live: confirmed the STOP rule breaking
+      mid-level removes the tile glow and unblocks the path in the exact
+      move the solver predicted, confirmed overlap-not-push behavior on a
+      plain ROCK object, tested undo/redo, and ran the sandbox checkout's
+      decline/expired-card/success paths, all matching Foresight's
+      established pattern. Zero console errors throughout. Sandbox
+      payment only.
 - [x] **Captionist** (creator-tool) — animated, styled burned-in captions
       for short-form video (word-by-word highlight, custom fonts/colors),
       the single most-evidenced concept in this round's research: a direct
