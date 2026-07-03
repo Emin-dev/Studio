@@ -1,5 +1,58 @@
 # Studio — Progress Log
 
+## 2026-07-03 — Batch 2, item 4: Repetitor shipped
+
+**Shipped:** an honest-scope concept demo for a WhatsApp-based homework
+grading assistant for Azerbaijani private tutors —
+https://github.com/Emin-dev/repetitor, live at
+https://emin-dev.github.io/repetitor/. **Monetization: RENT** — $12/month
+per tutor for ~100 gradings, pay-as-you-go top-ups beyond.
+
+**Built to the same honest-scope discipline as AçıqQapı, per BACKLOG.md's
+explicit note:** this concept genuinely needs a real backend (WhatsApp
+Business Cloud API + a real OCR/vision-LLM call per photo + a database),
+none of which exists or is faked here. What shipped instead: (1) a landing
+page that states plainly, near the top, that the core business premise —
+tutors paying $12/month and trusting an AI-generated grade enough to
+forward it to a parent — is **unvalidated**, and recommends piloting with
+3-5 real tutors before further build-out, not more code; (2) an
+interactive demo with an unmissable "NÜMUNƏ / DEMO — real deyil" banner
+(dashed border, persistent, both visual and textual) over 5 pre-written
+sample homework datasets — no real photo is ever analyzed, no real OCR/
+vision call is ever made; (3) a **real**, dependency-free, Node-tested
+rubric-scoring engine (`js/rubric.js`) and Azerbaijani parent-feedback
+generator (`js/feedback.js`) that the demo's sample data is actually
+computed through live (verified: switching samples recomputes real scores,
+e.g. 7/10 → 70%, 10/15 → 67%) — proving the logic works rather than just
+decorating the page; (4) a documented, explicitly-illustrative (not
+executed) server-side integration snippet showing how a real customer
+would wire WhatsApp Cloud API + a vision-LLM API into this repo's real
+scoring engine.
+
+**Verified for real, independently, not just from the building agent's
+report:** re-ran all 3 Node test files myself (39/39 checks: 19 rubric, 10
+feedback, 10 checkout). Real interactive browser pass: read the landing
+page's honest-premise section, clicked through multiple sample homeworks
+on the demo page and confirmed each produced a distinct real score with
+correct per-problem verdicts (including a genuinely-unanswered problem
+showing "Cavabsız" rather than being marked wrong), confirmed zero console
+errors throughout, confirmed the mobile layout (375px) has no horizontal
+overflow, and ran the full sandbox checkout: decline test card, an
+already-expired well-formed card (correctly rejected client-side before
+any submission), and a successful subscription (correct `SANDBOX-`
+reference code). No new bugs found beyond what the building agent already
+caught and fixed during its own build (a fraction-vs-decimal scoring
+edge case documented as a known limitation, and a mobile nav overflow bug
+that cascaded into a cut-off checkout modal).
+
+**Status:** sandbox payment mode only — awaiting the user to set up a real
+payment provider. Added to the hub.
+
+**Next:** Batch 2's final item (Qonuşma) — an Azerbaijani grammar checker
+needing a documented, not-faked backend proxy for hiding an LLM API key.
+
+---
+
 ## 2026-07-03 — Batch 2, item 3: Contexto AZ shipped
 
 **Shipped:** a daily Azerbaijani semantic word-guessing game —
@@ -368,9 +421,9 @@ payment provider before this can charge real money. Added to the hub.
 
 ## Ledger (updated every iteration — real numbers only)
 
-- **Products shipped:** 8 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ) — Batch 1 complete, Batch 2 in progress (3/5)
-- **Monetization-ready (sandbox/test mode wired):** 8
-- **Awaiting real payment setup (needs the user):** 8
+- **Products shipped:** 9 (Cohort Autopsy, AçıqQapı, Quiet Tiles, Instant Portfolio, Mood Nook, VPAT Draft, Scriver-i-şkola, Contexto AZ, Repetitor) — Batch 1 complete, Batch 2 in progress (4/5)
+- **Monetization-ready (sandbox/test mode wired):** 9
+- **Awaiting real payment setup (needs the user):** 9
 - **Live, real revenue:** $0 / 0 AZN — 0 / 10,000 AZN monthly target
 
 ---

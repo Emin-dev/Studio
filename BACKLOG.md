@@ -154,7 +154,7 @@ below names its real infrastructure cost honestly instead.)
       the non-punishing fail path (run ends, best score persists), and ran
       a real sandbox payment to completion. [hidden]/display CSS lesson
       applied proactively again — held correctly throughout.
-- [ ] **Repetitor** (B2B service / edtech, Azerbaijani-language-first) — a
+- [x] **Repetitor** (B2B service / edtech, Azerbaijani-language-first) — a
       WhatsApp-based grading assistant for Azerbaijani private tutors:
       forward a photo of homework, get a structured grade breakdown +
       parent-ready feedback message in Azerbaijani. **Monetization: RENT**
@@ -178,6 +178,19 @@ below names its real infrastructure cost honestly instead.)
       more production code** — the whole premise (tutors will pay $12/mo
       and trust an AI grade enough to forward it to a parent) is unverified
       guesswork, not evidenced demand.
+      **SHIPPED** — https://github.com/Emin-dev/repetitor — the honest v1
+      shape built exactly as specified: landing page states the unproven
+      premise plainly near the top, an unmissable "NÜMUNƏ / DEMO — real
+      deyil" banner over 5 pre-written sample homeworks, a real Node-tested
+      rubric-scoring engine + Azerbaijani parent-feedback generator that
+      the demo data is actually computed through live (not decorative), and
+      a documented illustrative-only server integration snippet. No real
+      WhatsApp/OCR/vision credentials anywhere. Verified independently: all
+      39 Node checks re-run myself, real browser pass across multiple
+      sample homeworks (each producing a distinct correct score), zero
+      console errors, mobile layout confirmed non-overflowing, full sandbox
+      checkout tested (decline, expired-card rejection, success). Sandbox
+      payment only.
 - [ ] **Qonuşma** (dev-tool / creator-tool, Azerbaijani-language-first) — an
       Azerbaijani grammar and style checker (suffix agreement, register
       consistency, loanword spelling) — a real, verified gap where neither
