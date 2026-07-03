@@ -7,8 +7,44 @@
   --surface: rgba(255, 255, 255, 0.72);
   --surface-strong: rgba(255, 255, 255, 0.92);
   --accent: #c98a5b;
-  --radius: 18px;
+  --accent-text: #8b592d; /* darker variant of --accent: passes 4.5:1 AA as
+                              text-on-background and as white-on-fill */
   --touch-min: 48px;
+
+  /* 8pt spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius scale — concentric: pills use --radius-pill, cards/sections use
+     --radius-lg, small inline chips use --radius-sm. */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+  --radius: var(--radius-lg); /* kept for continuity with existing usage */
+
+  /* Motion: a subtle, near-native spring easing (iOS-like overshoot), used
+     for press/hover feedback. Falls back silently to `ease` in the ~12% of
+     browsers without linear() support. */
+  --ease-spring: linear(0, 0.5 60%, 0.9 80%, 1.02 90%, 1);
+  --motion-fast: 150ms;
+  --motion-med: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease-spring: ease;
+    --motion-fast: 1ms;
+    --motion-med: 1ms;
+  }
 }
 
 * {
@@ -35,20 +71,27 @@ html, body {
   background: linear-gradient(160deg, #f5efe6, #e8dcc8);
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 .app-shell {
   max-width: 640px;
   margin: 0 auto;
-  padding: max(28px, env(safe-area-inset-top)) 20px 40px;
+  padding: max(var(--space-8), env(safe-area-inset-top)) var(--space-5)
+    max(var(--space-10), env(safe-area-inset-bottom));
 }
 
 .hub-header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: var(--space-6);
 }
 
 .hub-header h1 {
   font-size: 2rem;
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-2);
 }
 
 .tagline {
@@ -58,31 +101,31 @@ html, body {
 }
 
 .suggestions {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .suggestions-heading {
   font-size: 1.05rem;
-  margin: 0 0 4px;
+  margin: 0 0 var(--space-1);
 }
 
 .suggestions-note {
   color: var(--ink-soft);
   font-size: 0.82rem;
-  margin: 0 0 12px;
+  margin: 0 0 var(--space-3);
 }
 
 .suggestions-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .category-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
 }
 
 .filter-pill {
@@ -92,28 +135,35 @@ html, body {
   color: var(--ink-soft);
   background: rgba(0, 0, 0, 0.06);
   border: none;
-  border-radius: 999px;
-  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
   min-height: var(--touch-min);
+  min-width: var(--touch-min);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background var(--motion-fast) var(--ease-spring),
+    color var(--motion-fast) var(--ease-spring),
+    transform var(--motion-fast) var(--ease-spring);
+}
+
+.filter-pill:active {
+  transform: scale(0.96);
 }
 
 .filter-pill.is-active {
-  background: var(--accent);
+  background: var(--accent-text);
   color: #fff;
 }
 
 .catalog {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: var(--space-8);
 }
 
 .category-section {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-4);
 }
 
 .category-heading {
@@ -125,24 +175,26 @@ html, body {
 .category-products {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-4);
 }
 
 .product-card {
   display: flex;
-  gap: 14px;
+  gap: var(--space-4);
   align-items: flex-start;
   background: var(--surface);
-  border-radius: var(--radius);
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
   text-decoration: none;
   color: inherit;
   min-height: var(--touch-min);
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform var(--motion-fast) var(--ease-spring),
+    background var(--motion-fast) var(--ease-spring);
+  transform: translate3d(0, 0, 0);
 }
 
 .product-card:active {
-  transform: scale(0.98);
+  transform: scale(0.98) translate3d(0, 0, 0);
   background: var(--surface-strong);
 }
 
@@ -161,7 +213,7 @@ html, body {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 
@@ -174,13 +226,13 @@ html, body {
   font-size: 0.75rem;
   color: var(--ink-soft);
   background: rgba(0, 0, 0, 0.06);
-  border-radius: 999px;
-  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  padding: 3px var(--space-3);
   white-space: nowrap;
 }
 
 .product-pitch {
-  margin: 6px 0 10px;
+  margin: var(--space-2) 0 var(--space-3);
   font-size: 0.92rem;
   color: var(--ink-soft);
 }
@@ -192,11 +244,11 @@ html, body {
   font-size: 0.82rem;
   font-weight: 700;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .product-price {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .product-status {
@@ -208,15 +260,16 @@ html, body {
   text-align: center;
   color: var(--ink-soft);
   background: var(--surface);
-  border-radius: var(--radius);
-  padding: 32px 20px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-5);
 }
 
 .hub-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 32px;
-  padding-top: 16px;
+  align-items: center;
+  margin-top: var(--space-8);
+  padding: var(--space-4) 0 max(var(--space-4), env(safe-area-inset-bottom));
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 0.82rem;
   color: var(--ink-soft);
@@ -224,4 +277,15 @@ html, body {
 
 .hub-footer a {
   color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: 0 var(--space-2);
+  margin: 0 calc(var(--space-2) * -1);
+  border-radius: var(--radius-sm);
+  transition: background var(--motion-fast) var(--ease-spring);
+}
+
+.hub-footer a:active {
+  background: rgba(0, 0, 0, 0.06);
 }
