@@ -281,7 +281,7 @@ not just accepted as-is — see each item's REFRAME note.)
       altered in the real downloaded PNG, not a removable overlay;
       confirmed via full-source grep that no fetch/XHR exists anywhere.
       29/29 Node checks independently re-run. Sandbox payment only.
-- [ ] **Foresight** (game) — a small-grid (5x5-8x8), fully deterministic
+- [x] **Foresight** (game) — a small-grid (5x5-8x8), fully deterministic
       turn-based tactics game in the vein of Into the Breach: every enemy
       telegraphs its exact next move, so every loss is a solvable planning
       failure, not bad luck. A handful of unit types, a short campaign of
@@ -299,6 +299,35 @@ not just accepted as-is — see each item's REFRAME note.)
       research explicitly named a "reference-class fallacy." Build this as
       a craft/genre-diversity bet (this catalog has zero grid-tactics
       games so far), not a revenue plan.
+      **SHIPPED** — https://github.com/Emin-dev/foresight — real 6x6
+      grid-tactics engine (board/units/enemies/turn orchestration are all
+      pure functions, zero DOM dependency), 15 missions across 3 islands
+      (Reedshore free, Stonemarch + Windkeep paid), 3 player unit types
+      (Bulwark blocker, Ram pusher, Striker ranged) and 3 enemy types
+      (Crawler, Brute, Spitter — the Spitter was redesigned mid-build to
+      respect line-of-sight so a Bulwark can genuinely intercept its shot,
+      fixing a real mission-balance bug). Every mission was confirmed
+      winnable ahead of shipping by scripted search against the real
+      engine (exhaustive for most, 200k-trial randomized search for the
+      rest), which caught and fixed two real design bugs: reedshore-1's
+      original striker spawn was literally unwinnable, and
+      stonemarch-4's only blocker died with no time for backup. Verified
+      independently past what the building agent reported: played a live
+      mission through the real UI and watched the enemy's telegraphed
+      move/attack tiles resolve to the exact outcome shown (not just
+      trusted the tests) — highlighted-tile telegraph rendering matched
+      exactly, won reedshore-1 via the same scripted sequence the test
+      suite uses, then lost it deliberately and confirmed retry-immediately
+      preserved the earlier win's saved progress (non-punishing permadeath-
+      lite, as designed). Sandbox checkout: declined 4000000000000002, then
+      unlocked with a valid Luhn-passing card, confirmed the island lock
+      badges disappeared and progression gating switched from
+      purchase-gated to mission-sequence-gated exactly as coded. 63/63 Node
+      checks independently re-run fresh (board 17, enemies 10, units 18,
+      run 7 — including the two full scripted mission playthroughs — and
+      checkout 11). Zero console errors and zero failed network requests
+      throughout. Sandbox payment only, as with every other product in this
+      catalog.
 - [ ] **Ruleshift** (game) — a Baba-Is-You-style rule-manipulation puzzle:
       push word-blocks around a grid to rewrite the rules of the level
       itself. Rule-parser is pure JS grid/string logic, levels ship as

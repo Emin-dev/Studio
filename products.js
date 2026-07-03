@@ -151,4 +151,16 @@ export const PRODUCTS = [
     price: '$3.99 one-time (batch/multi-file processing)',
     status: 'sandbox'
   },
+  {
+    name: 'Foresight',
+    pitch: 'A small, fully deterministic grid-tactics game — every enemy telegraphs its exact next move before you act, and resolution always matches exactly what was shown. Honest craft/genre-diversity bet, not a revenue plan.',
+    category: 'game',
+    primaryCategory: 'games',
+    emoji: '🛡️',
+    url: 'https://github.com/Emin-dev/foresight',
+    liveUrl: 'https://emin-dev.github.io/foresight/',
+    monetization: 'buy',
+    price: '$4.99 one-time (Stonemarch + Windkeep — 10 more missions)',
+    status: 'sandbox'
+  },
 ];
