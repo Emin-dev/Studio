@@ -102,4 +102,15 @@ export const PRODUCTS = [
     price: '$12/month per tutor (~100 gradings, pay-as-you-go top-ups beyond)',
     status: 'sandbox'
   },
+  {
+    name: 'Qonuşma',
+    pitch: 'An Azerbaijani grammar and style checker — a real, free spellchecker (neither Grammarly nor LanguageTool support the language at all) plus a demoed Pro tier for suffix agreement, register, and loanword checks.',
+    category: 'dev-tool / creator-tool',
+    emoji: '✍️',
+    url: 'https://github.com/Emin-dev/qonusma',
+    liveUrl: 'https://emin-dev.github.io/qonusma/',
+    monetization: 'rent',
+    price: 'Free spellcheck tier; $4/month Pro (suffix/register/loanword checks)',
+    status: 'sandbox'
+  },
 ];
