@@ -489,8 +489,69 @@ craft/portfolio/category-diversity value, exactly as Batch 2 was, not as
 a revenue bet.
 
 ---
-*When Batch 3 is fully checked off: do fresh market research (RULES.md step
-7), and write Batch 4 here with the same category-diversity + monetization-
-model discipline — and specifically try to source real evidence for a
-B2B-service or social-adjacent concept, which two research rounds in a row
-have failed to find.*
+
+## Batch 4 (IN PROGRESS, partial — see honest note below)
+
+A third dedicated research round (5 angles, all specifically targeting
+B2B-service or social-adjacent concepts: freelancer/agency tools,
+content-ops tools, low-pressure social, niche-community coordination,
+vertical B2B) produced 14 candidates, adversarially judged. This round was
+the harshest yet: 12 of 14 recommended outright cut, and the 2
+"build_with_changes" survivors both needed real reframing to avoid the
+same "Phase 2 hides a paid server" trap this catalog has cut for three
+rounds running. One survived reframing as a genuinely static, honestly-
+buildable item:
+
+- [ ] **Quote Kit** (b2b, single-vertical pricing calculator) — an
+      embeddable, single-vertical (e.g. web design or video production)
+      pricing calculator: a few questions in, an instant estimate range
+      out, plus a branded one-page proposal PDF generated entirely
+      client-side. **Monetization: BUY** — sold as a one-time code
+      deliverable/template kit to freelancers/agencies (not a hosted
+      rented service), matching the honest reframe below.
+      **REFRAME APPLIED:** the original pitch proposed "rent" (recurring
+      SaaS), but a purely static embed has no natural enforcement
+      mechanism for recurring billing — nothing stops a customer from
+      embedding the JS once and self-hosting it forever, which would have
+      quietly required a license-check backend to make "rent" real (a
+      smaller version of the same backend-creeps-in trap). Reframed to a
+      one-time-purchase template/kit sale instead, which needs zero
+      backend and fits honestly.
+      **HONEST TAKE:** evidence score 3/10 — the closest thing to
+      confirming demand is a single vendor-blog conversion-rate claim (not
+      independently verifiable) and a list of funded horizontal
+      calculator-builder competitors (uCalc, Calconic, ConvertCalculator,
+      involve.me, and others) who already serve this need at the
+      horizontal layer, several with working free tiers — which cuts
+      against a new entrant more than for one. Build this as a genre/
+      category-diversity bet with low revenue expectations, not on the
+      strength of the cited evidence.
+
+**Honest note on this batch's incompleteness:** three consecutive research
+rounds (Batch 2, Batch 3, and this one) have now specifically tried and
+failed to surface a strong B2B-service or social-adjacent candidate that
+doesn't require a live backend+auth+billing from day one with evidence
+strong enough to justify it. The one candidate with genuinely the
+strongest evidence this round (a testimonial/social-proof collector,
+evidence score 6/10, real named companies with disclosed revenue) was cut
+anyway because its own honest infra assessment required a database, video
+object storage, and multi-tenant auth from day one — not a hidden "Phase
+2," but stated up front — which is exactly the pattern this catalog
+exists to avoid. Rather than keep forcing weak B2B/social picks to fill a
+round number, **Batch 4 stays intentionally partial (1 item) for now**;
+the remaining 4 slots should draw from categories with a better track
+record in this catalog (games, dev-tools, creator-tools) via a fresh
+research pass, or Batch 4 can be filled out incrementally as strong ideas
+surface, rather than on a fixed schedule. This is also a real signal worth
+naming plainly: the zero/thin-backend, no-account, static-first
+constraint that keeps every other Studio product honest may be
+structurally at odds with what makes B2B SaaS and social products
+valuable in the first place — the studio-platform AI-generator initiative
+(a separate, explicitly backend-having project) may end up being the
+better outlet for B2B/social ambition than trying to force it into this
+catalog's static-only mold.
+
+---
+*When Batch 4 needs more items: do fresh market research (RULES.md step
+7) for games/dev-tools/creator-tools, or revisit B2B/social if a genuinely
+new angle emerges — don't force another weak pick just to hit 5.*
